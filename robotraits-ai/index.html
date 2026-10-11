@@ -1,270 +1,341 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ROBOTRAITS.ai | Robotics Trait Ontology, IP & Documentation</title>
-  <meta name="description" content="Explore ROBOTRAITS: trait ontology, intellectual property records, technical documentation, licensing, versioning, release history, and PITN ecosystem references.">
-  <meta name="robots" content="index,follow">
+  <title>ROBOTRAITS.ai | Robotics Trait Ontology & AI</title>
+  <meta name="description" content="Explore ROBOTRAITS.ai, the ROBOTRAITS trait ontology, technical documentation, project resources, and intellectual property records.">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://pitn374.github.io/ROBOTRAITS/robotraits-ai/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="ROBOTRAITS.ai | Official Repository Index">
-  <meta property="og:description" content="A navigable index to ROBOTRAITS ontology materials, IP records, release history, license, and technical documentation.">
+  <meta property="og:title" content="ROBOTRAITS.ai">
+  <meta property="og:description" content="Explore the ROBOTRAITS project, trait ontology, and technical resources.">
   <meta property="og:url" content="https://pitn374.github.io/ROBOTRAITS/robotraits-ai/">
-  <meta name="theme-color" content="#101827">
+  <meta name="theme-color" content="#0b1120">
+
   <style>
     :root {
       color-scheme: dark;
-      --bg: #0b1220;
-      --panel: #111c2e;
-      --line: #263750;
-      --text: #edf3fb;
-      --muted: #aebed2;
-      --accent: #69d5c3;
-      --link: #8ecbff;
+      --bg: #0b1120;
+      --panel: #131e31;
+      --text: #edf3ff;
+      --muted: #a9b7cc;
+      --accent: #6ee7d2;
+      --border: #293750;
     }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font: 16px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
     }
-    a {
-      color: var(--link);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-      overflow-wrap: anywhere;
+
+    a { color: var(--accent); }
+    a:hover { text-decoration-thickness: 2px; }
+
+    .container {
+      width: min(1080px, 92%);
+      margin: 0 auto;
     }
-    a:hover { color: var(--accent); }
+
     header {
-      padding: 4rem max(1.25rem, calc((100% - 1080px) / 2));
-      background: radial-gradient(ellipse at top right, #1d3a50 0, transparent 55%), linear-gradient(135deg, #101827, #0b1220);
-      border-bottom: 1px solid var(--line);
+      background: #0e1728;
+      border-bottom: 1px solid var(--border);
     }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .brand {
+      color: var(--text);
+      font-size: 1.3rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .navlinks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .navlinks a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .hero { padding: 82px 0 68px; }
+
     .eyebrow {
       color: var(--accent);
+      font-size: .82rem;
+      font-weight: bold;
+      letter-spacing: .15em;
       text-transform: uppercase;
-      letter-spacing: .13em;
-      font-size: .78rem;
-      font-weight: 750;
     }
-    h1 { font-size: clamp(2.3rem, 6vw, 4.3rem); line-height: 1.05; margin: .6rem 0 1rem; }
-    h2 { margin-top: 0; font-size: 1.5rem; line-height: 1.25; }
-    h3 { margin: .2rem 0 .5rem; font-size: 1.08rem; }
-    .lead { max-width: 780px; color: var(--muted); font-size: 1.12rem; }
-    .wrap { width: min(1080px, calc(100% - 2.5rem)); margin: 0 auto; }
-    nav { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.5rem; }
-    nav a, .pill {
+
+    h1 {
+      max-width: 850px;
+      margin: 14px 0;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -.05em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button {
       display: inline-block;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: .4rem .75rem;
-      font-size: .9rem;
+      padding: 11px 18px;
+      border: 1px solid var(--accent);
+      border-radius: 9px;
+      background: var(--accent);
+      color: #081522;
+      font-weight: bold;
       text-decoration: none;
-      background: #101d2d;
     }
-    main { padding: 2rem 0 4rem; }
-    section { margin: 1.2rem 0 2rem; scroll-margin-top: 1rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 1rem; }
-    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 1.15rem 1.2rem; min-width: 0; }
-    .card p, .muted { color: var(--muted); }
-    ul.links { list-style: none; padding: 0; margin: .6rem 0 0; }
-    ul.links li { padding: .75rem 0; border-top: 1px solid var(--line); }
-    ul.links li:first-child { border-top: 0; }
-    small { display: block; color: var(--muted); margin-top: .15rem; }
-    .notice { border-left: 3px solid var(--accent); padding: .65rem 1rem; background: #10232b; color: var(--muted); border-radius: 0 10px 10px 0; }
-    footer { border-top: 1px solid var(--line); padding: 1.5rem 0 2.5rem; color: var(--muted); font-size: .92rem; }
-    .skip { position: absolute; left: -9999px; }
-    .skip:focus { left: 1rem; top: 1rem; background: var(--panel); padding: .5rem; z-index: 10; }
-    code { color: var(--accent); }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    section { padding: 36px 0; }
+
+    h2 {
+      margin-bottom: 8px;
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+    }
+
+    .intro {
+      max-width: 760px;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card {
+      padding: 22px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .card h3 { margin-top: 0; }
+    .card p { color: var(--muted); }
+    .card a { display: inline-block; margin: 5px 12px 5px 0; }
+
+    .callout {
+      padding: 20px;
+      background: var(--panel);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    footer a { margin-right: 14px; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 55px 0 40px; }
+      nav { align-items: flex-start; }
+      .navlinks { gap: 12px; }
+    }
   </style>
 </head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
 
+<body>
   <header>
-    <div class="eyebrow">PITN.ai · Repository-backed reference</div>
-    <h1>ROBOTRAITS<span style="color:var(--accent)">.ai</span></h1>
-    <p class="lead">
-      Explore the ROBOTRAITS project through direct links to its source repository,
-      trait ontology materials, intellectual-property records, technical documentation,
-      release and versioning history, licensing, and PITN ecosystem cross-references.
-    </p>
-    <p>
-      <a class="pill" href="https://github.com/PITN374/ROBOTRAITS">Open ROBOTRAITS Repository ↗</a>
-      <a class="pill" href="https://github.com/PITN374/ROBOTRAITS/commits/main/">View Commit History ↗</a>
-      <a class="pill" href="https://github.com/PITN374">PITN374 on GitHub ↗</a>
-    </p>
-    <nav aria-label="Page sections">
-      <a href="#overview">Overview</a>
-      <a href="#ip">IP Records</a>
-      <a href="#ontology">Ontology & Docs</a>
-      <a href="#release">Release & Versioning</a>
-      <a href="#ecosystem">PITN Ecosystem</a>
-      <a href="#verification">Source Verification</a>
-    </nav>
+    <div class="container">
+      <nav aria-label="Main navigation">
+        <a class="brand" href="#home">ROBOTRAITS.ai</a>
+        <div class="navlinks">
+          <a href="#about">About</a>
+          <a href="#resources">Resources</a>
+          <a href="#ip">IP Records</a>
+          <a href="#ecosystem">Ecosystem</a>
+        </div>
+      </nav>
+    </div>
   </header>
 
-  <main id="main" class="wrap">
-    <section id="overview">
-      <h2>Repository Overview</h2>
+  <main>
+    <section class="hero container" id="home">
+      <div class="eyebrow">Robotics · Traits · Ontology</div>
+      <h1>A structured foundation for describing robotic traits.</h1>
       <p>
-        This page is a navigation index to the ROBOTRAITS repository. Links open
-        the source documents and folders on GitHub so visitors can review the
-        underlying project information directly.
+        Welcome to ROBOTRAITS.ai, the public landing page for the
+        ROBOTRAITS project. Explore its trait ontology, technical
+        documentation, project resources, intellectual property records,
+        and related materials maintained in the public repository.
       </p>
+      <div class="actions">
+        <a class="button" href="https://github.com/PITN374/ROBOTRAITS">
+          Explore the Repository
+        </a>
+        <a class="button secondary" href="#resources">
+          Browse Project Resources
+        </a>
+      </div>
+    </section>
+
+    <section class="container" id="about">
+      <h2>About ROBOTRAITS</h2>
+      <p class="intro">
+        The ROBOTRAITS repository provides the primary source for published
+        project information, ontology materials, technical documentation,
+        licensing information, and development history. Follow the source
+        links below to review the project's actual documentation and scope.
+      </p>
+      <div class="callout">
+        <strong>Official project repository:</strong>
+        <a href="https://github.com/PITN374/ROBOTRAITS">
+          github.com/PITN374/ROBOTRAITS
+        </a>
+      </div>
+    </section>
+
+    <section class="container" id="resources">
+      <h2>Explore Project Resources</h2>
+      <p class="intro">
+        Access the source repository, trait ontology, technical materials,
+        and project history.
+      </p>
+
       <div class="grid">
         <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/blob/main/README.md">README.md — Project Introduction</a></h3>
-          <p>Start here for the repository's primary project overview and organization.</p>
+          <h3>Project Overview</h3>
+          <p>Start with the repository and its main project description.</p>
+          <a href="https://github.com/PITN374/ROBOTRAITS">Repository home ↗</a>
+          <a href="https://github.com/PITN374/ROBOTRAITS/blob/main/README.md">Project README ↗</a>
+          <a href="https://github.com/PITN374/ROBOTRAITS/commits/main/">Commit history ↗</a>
         </article>
+
         <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/tree/main/docs">Documentation Directory</a></h3>
-          <p>Browse the repository's documentation and related project records.</p>
+          <h3>Trait Ontology</h3>
+          <p>Review the published trait ontology record and related files.</p>
+          <a href="https://github.com/PITN374/ROBOTRAITS/blob/main/IP-011_ROBOTRAITS_TRAIT_ONTOLOGY.md">Trait ontology record ↗</a>
+          <a href="https://github.com/PITN374/ROBOTRAITS/tree/main/ontology">Ontology directory ↗</a>
+          <a href="https://github.com/PITN374/ROBOTRAITS/tree/main/docs">Documentation directory ↗</a>
         </article>
+
         <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/tree/main/ontology">Ontology Directory</a></h3>
-          <p>Browse ontology materials and associated files in the repository.</p>
+          <h3>Versions & Project History</h3>
+          <p>Trace project changes through the published repository history.</p>
+          <a href="https://github.com/PITN374/ROBOTRAITS/commits/main/">Version history ↗</a>
+          <a href="https://github.com/PITN374/ROBOTRAITS/search?q=VERSIONING.md&type=code">Find versioning documentation ↗</a>
+          <a href="https://github.com/PITN374/ROBOTRAITS/search?q=RELEASE-AND-IP-CONSOLIDATION-RECORD.md&type=code">Find release record ↗</a>
         </article>
+
         <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/tree/main/robotraits-ai">ROBOTRAITS.ai Page Source</a></h3>
-          <p>View the folder containing this landing page and its source files.</p>
+          <h3>Related Technical Resources</h3>
+          <p>Explore related materials published in the project repository.</p>
+          <a href="https://github.com/PITN374/ROBOTRAITS/blob/main/ROBOPARTS-CROSS-REFERENCE.md">ROBOPARTS cross-reference ↗</a>
+          <a href="https://github.com/PITN374/ROBOTRAITS/tree/main">Browse all project files ↗</a>
         </article>
       </div>
     </section>
 
-    <section id="ip">
+    <section class="container" id="ip">
       <h2>Intellectual Property Records & Notices</h2>
+      <p class="intro">
+        Consult the actual published records and notices for their stated
+        scope, authorship, licensing terms, and supporting documentation.
+      </p>
+
       <div class="grid">
         <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/blob/main/IP-011_ROBOTRAITS_COMPREHENSIVE_IP_RECORD.md">IP-011 — Comprehensive IP Record</a></h3>
-          <p>Comprehensive ROBOTRAITS IP record. Review the source document for its stated asset identification, scope, technical architecture, and licensing policies.</p>
-          <small><a href="https://github.com/PITN374/ROBOTRAITS/commit/ac06109f6860572838f277a0a28d296b149b5158">View record creation commit ↗</a></small>
+          <h3>IP-011 — Comprehensive IP Record</h3>
+          <p>Comprehensive ROBOTRAITS intellectual property record.</p>
+          <a href="https://github.com/PITN374/ROBOTRAITS/blob/main/IP-011_ROBOTRAITS_COMPREHENSIVE_IP_RECORD.md">Read the record ↗</a>
+          <a href="https://github.com/PITN374/ROBOTRAITS/commit/ac06109f6860572838f277a0a28d296b149b5158">Creation commit ↗</a>
         </article>
+
         <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/blob/main/IP-011_ROBOTRAITS_TRAIT_ONTOLOGY.md">IP-011 — Trait Ontology Record</a></h3>
+          <h3>IP-011 — Trait Ontology Record</h3>
           <p>Dedicated record associated with the ROBOTRAITS trait ontology.</p>
-          <small><a href="https://github.com/PITN374/ROBOTRAITS/commit/8bfaeb1a203658e442e7adaae394612725f70155">View document formatting commit ↗</a></small>
+          <a href="https://github.com/PITN374/ROBOTRAITS/blob/main/IP-011_ROBOTRAITS_TRAIT_ONTOLOGY.md">Read the record ↗</a>
+          <a href="https://github.com/PITN374/ROBOTRAITS/commit/8bfaeb1a203658e442e7adaae394612725f70155">Formatting commit ↗</a>
         </article>
+
         <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/blob/main/IP-NOTICE.md">IP-NOTICE.md — Intellectual Property Notice</a></h3>
-          <p>Open the project's IP notice and review its actual language on authorship, scope, licensing, and evidence.</p>
-          <small><a href="https://github.com/PITN374/ROBOTRAITS/commit/373a5b0e1f5ea24d935edfda17c5b9b8feaf1564">View notice creation commit ↗</a></small>
+          <h3>Intellectual Property Notice</h3>
+          <p>Read the project's published IP notice.</p>
+          <a href="https://github.com/PITN374/ROBOTRAITS/blob/main/IP-NOTICE.md">Read IP-NOTICE.md ↗</a>
+          <a href="https://github.com/PITN374/ROBOTRAITS/commit/373a5b0e1f5ea24d935edfda17c5b9b8feaf1564">Notice commit ↗</a>
         </article>
+
         <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/blob/main/LICENSE">LICENSE — Repository License</a></h3>
-          <p>Read the actual license file to understand the terms published with this repository.</p>
-          <small><a href="https://github.com/PITN374/ROBOTRAITS/commit/80c652859be65a667f423795f516c56299b19dec">View initial commit ↗</a></small>
+          <h3>Repository License</h3>
+          <p>Read the license published with the project repository.</p>
+          <a href="https://github.com/PITN374/ROBOTRAITS/blob/main/LICENSE">Read LICENSE ↗</a>
         </article>
       </div>
-      <p class="notice">
-        This page provides navigation to source records. It does not replace the
-        source documents or independently determine legal ownership or license scope.
-        Consult the linked files for the authoritative wording.
-      </p>
     </section>
 
-    <section id="ontology">
-      <h2>Ontology & Technical Documentation</h2>
+    <section class="container" id="ecosystem">
+      <h2>PITN Ecosystem</h2>
+      <p class="intro">
+        Visit the related public website and explore the technical
+        cross-reference available in the ROBOTRAITS repository.
+      </p>
       <div class="grid">
         <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/tree/main/ontology">Browse Ontology Assets</a></h3>
-          <p>Open the live folder to see the ontology files currently present in the repository.</p>
+          <h3>Power In The Numbers</h3>
+          <p>Visit the PITN website for its own project information.</p>
+          <a href="https://powerinthenumbers.ai/">powerinthenumbers.ai ↗</a>
         </article>
+
         <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/tree/main/docs">Browse Technical and Project Documentation</a></h3>
-          <p>Open the live documentation folder. Its contents can evolve without requiring this index to guess individual file paths.</p>
-        </article>
-        <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/blob/main/ROBOPARTS-CROSS-REFERENCE.md">ROBOPARTS Cross-Reference</a></h3>
-          <p>Read the repository document describing the stated relationship among ROBOPARTS, ROBOTRAITS, and ROBOAGENTIC within the PITN ecosystem.</p>
-          <small><a href="https://github.com/PITN374/ROBOTRAITS/commit/27a94a181ba771213720619a1439d6fc3dcd73bf">View cross-reference creation commit ↗</a></small>
+          <h3>ROBOPARTS</h3>
+          <p>Review the ROBOPARTS cross-reference published with ROBOTRAITS.</p>
+          <a href="https://github.com/PITN374/ROBOTRAITS/blob/main/ROBOPARTS-CROSS-REFERENCE.md">View cross-reference ↗</a>
         </article>
       </div>
-    </section>
-
-    <section id="release">
-      <h2>Release Records & Versioning History</h2>
-      <ul class="links card">
-        <li>
-          <a href="https://github.com/PITN374/ROBOTRAITS/commit/b0980d1be1d48d554f24aa72808e878ffabed1e9">ROBOTRAITS 3.1.0 — Release Record Commit</a>
-          <small>Inspect the commit and changed-file list for the release record describing the proposed trait-based semantic ontology and related artifacts.</small>
-        </li>
-        <li>
-          <a href="https://github.com/PITN374/ROBOTRAITS/commit/dc04158be3cc9b8faa7e57539e7de2246e6cc75a">VERSIONING.md — Versioning Policy Commit</a>
-          <small>Inspect the commit's changed-file list for the versioning policy covering version format, release components, change management, and validation procedures.</small>
-        </li>
-        <li>
-          <a href="https://github.com/PITN374/ROBOTRAITS/commit/59fd9448aee785473e6366a6f02f085e07f7c95d">Release & IP Consolidation Record Commit</a>
-          <small>Inspect the changed files for the consolidated technical architecture, IP, versioning, ontology, and PITN ecosystem reference.</small>
-        </li>
-        <li>
-          <a href="https://github.com/PITN374/ROBOTRAITS/tree/main/.github/workflows/docs">.github/workflows/docs — Repository Path</a>
-          <small>Open the path shown in the repository listing and inspect the files currently present there.</small>
-        </li>
-        <li>
-          <a href="https://github.com/PITN374/ROBOTRAITS/commits/main/">All Commits on the Main Branch</a>
-          <small>Review the full branch history and inspect additional changes and files.</small>
-        </li>
-      </ul>
-      <p class="notice">
-        Release/versioning entries point to specific commits where the precise
-        current file paths have not been independently verified. The commit view
-        lets readers confirm the actual changed-file path.
-      </p>
-    </section>
-
-    <section id="ecosystem">
-      <h2>PITN Ecosystem & Related Resources</h2>
-      <div class="grid">
-        <article class="card">
-          <h3><a href="https://github.com/PITN374/ROBOTRAITS/blob/main/ROBOPARTS-CROSS-REFERENCE.md">ROBOTRAITS, ROBOPARTS & ROBOAGENTIC</a></h3>
-          <p>Use the project's own cross-reference document to review the stated architectural relationships and integration model.</p>
-        </article>
-        <article class="card">
-          <h3><a href="https://github.com/PITN374">PITN374 — GitHub Profile</a></h3>
-          <p>Browse the publisher's public profile and repositories.</p>
-        </article>
-        <article class="card">
-          <h3><a href="https://powerinthenumbers.ai/">Power in the Numbers</a></h3>
-          <p>Visit the PITN.ai umbrella website. Existing domain forwarding is outside the scope of this page and should remain unchanged.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="verification">
-      <h2>Source Links & Verification</h2>
-      <ul class="links card">
-        <li>
-          <a href="https://github.com/PITN374/ROBOTRAITS">ROBOTRAITS — GitHub Repository</a>
-          <small>Canonical repository view for source files, directories, branches, and repository information.</small>
-        </li>
-        <li>
-          <a href="https://github.com/PITN374/ROBOTRAITS/commits/main/">Main Branch Commit History</a>
-          <small>Inspect changes and open individual commits to review the changed-file lists.</small>
-        </li>
-        <li>
-          <a href="https://github.com/PITN374/ROBOTRAITS/commit/31abc312e16917f0489249b17767a1895dcaad55">Initial ROBOTRAITS.ai HTML Commit — 31abc31</a>
-          <small>The supplied repository listing identifies this commit as “Add initial HTML structure for ROBOTRAITS.ai.”</small>
-        </li>
-        <li>
-          <a href="https://github.com/PITN374/ROBOTRAITS/commits?author=PITN374">Commits by PITN374</a>
-          <small>View repository commits filtered by the PITN374 author.</small>
-        </li>
-      </ul>
     </section>
   </main>
 
   <footer>
-    <div class="wrap">
-      <p><strong>ROBOTRAITS.ai</strong> · Repository navigation and discovery page.</p>
-      <p>
-        Source documents remain in the
-        <a href="https://github.com/PITN374/ROBOTRAITS">ROBOTRAITS GitHub repository</a>.
-        This index is provided to help visitors discover and verify those sources.
-      </p>
+    <div class="container">
+      <p><strong>ROBOTRAITS.ai</strong> — Project landing page and resource directory.</p>
+      <a href="https://github.com/PITN374/ROBOTRAITS">GitHub Repository</a>
+      <a href="https://github.com/PITN374/ROBOTRAITS/blob/main/LICENSE">License</a>
+      <a href="https://powerinthenumbers.ai/">Power In The Numbers</a>
+      <p>Consult the linked source documents for authoritative project details.</p>
     </div>
   </footer>
 </body>
