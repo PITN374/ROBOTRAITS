@@ -1,0 +1,299 @@
+# IP-ROBOAGENTIC-002
+## ROBOAGENTIC: Governed Execution, Stateful Orchestration, and Outcome Provenance
+
+**Document type:** Technical intellectual property disclosure  
+**Project:** ROBOAGENTIC  
+**Foundational infrastructure:** PITN  
+**Specification version:** 1.0.0  
+**Status:** Proposed reference architecture  
+**Classification:** Functional method, system architecture, and execution-control specification
+
+---
+
+## 1. Technical Subject Matter
+
+This disclosure specifies a reference architecture for a stateful, ontology-aware functional agent that transforms an objective into a governed execution process and evaluates the resulting outcome.
+
+ROBOAGENTIC is designed to connect semantic interpretation, capability discovery, action planning, authorization, controlled dispatch, execution observation, outcome verification, and provenance recording in a coordinated operational process.
+
+PITN provides the foundational semantic identity, ontology, capability definitions, governance conventions, physical capability mappings, and provenance framework used by the agent.
+
+The architecture is intended to apply across digital services, software workflows, APIs, robotic devices, connected physical systems, and multi-system or fleet environments.
+
+The subject matter is not limited to generating natural-language responses or producing a plan. It specifies a process for distinguishing a proposed action from an authorized action, an authorized action from an executed action, and an execution result from a verified outcome.
+
+## 2. Problem Addressed
+
+An intelligent system may interpret a task correctly while lacking the capability, authority, interface, or operational conditions needed to perform it.
+
+Similarly, issuing an action request does not establish that the target system accepted it, that the operation completed, or that the requested outcome was achieved.
+
+A system that fails to distinguish these stages can report misleading success, attempt actions outside its authority, lose the relationship between decisions and results, or fail to account for faults and changing operational conditions.
+
+The ROBOAGENTIC reference architecture addresses these problems by defining explicit execution stages, state transitions, authorization checkpoints, feedback requirements, and provenance associations.
+
+These are intended architectural controls. Their effectiveness depends on the actual implementation and the integrity of the connected services and evidence sources.
+
+## 3. System Architecture
+
+A reference implementation may include the following logical components.
+
+### 3.1 Semantic identity and profile resolver
+
+Resolves the agent's identifier, semantic profile, profile version, operating context, and applicable identity credentials.
+
+It provides the identity context used by the task interpretation, authorization, execution, and provenance processes.
+
+### 3.2 Objective and ontology interpreter
+
+Receives a task or operational event and resolves its meaning against the applicable PITN ontology and semantic definitions.
+
+It identifies the requested objective, relevant entities, expected outcomes, constraints, and any missing or ambiguous requirements.
+
+When an objective cannot be interpreted with sufficient confidence, the system may request clarification or mark the task as blocked rather than inventing missing requirements.
+
+### 3.3 Capability and interface resolver
+
+Maps the interpreted requirements to registered tools, software interfaces, APIs, robotic capabilities, and physical-system adapters.
+
+The resolver evaluates declared capability against available implementation information, target compatibility, operating conditions, and relevant constraints.
+
+A capability declaration alone is not sufficient evidence that an operation can be performed.
+
+### 3.4 Planner and action-proposal generator
+
+Produces a structured proposal describing the intended operation, target, required capabilities, preconditions, expected result, and verification criteria.
+
+The proposal is a decision artifact. It is not, by itself, permission to execute or evidence of execution.
+
+### 3.5 Governance and authorization controller
+
+Evaluates the proposed action against applicable policies, permissions, operating constraints, approval requirements, and authorization context.
+
+It returns a defined decision, such as authorized, denied, or awaiting approval. The decision should be associated with the action proposal and the relevant policy and configuration versions.
+
+The execution interface must enforce the authorization decision rather than relying solely on the language model's assertion that an action is permitted.
+
+### 3.6 Controlled execution gateway
+
+Dispatches an authorized operation through a registered connector, API adapter, software workflow, robot controller interface, or other permitted execution mechanism.
+
+The gateway records dispatch information and returns the execution status available from the target interface.
+
+Where the target is a physical system, the architecture requires appropriate device-level and system-level safety controls. An agent-level policy check does not replace independent safety enforcement.
+
+### 3.7 Observation and outcome verifier
+
+Collects execution responses, telemetry, status events, and other available evidence.
+
+It compares the observed outcome with the task's acceptance criteria and determines whether the result is verified, failed, uncertain, or blocked.
+
+Verification must be based on available evidence, not merely on the fact that an execution request was issued.
+
+### 3.8 Provenance and lifecycle recorder
+
+Associates task, decision, authorization, dispatch, execution, and verification records with relevant identity, profile version, configuration, policy, timestamps, and evidence references.
+
+A production implementation must define evidence integrity, access controls, retention, and any cryptographic signing or tamper-evidence mechanisms separately.
+
+## 4. Governed Execution Method
+
+The reference method proceeds through the following stages.
+
+### Stage 1 — Receive
+
+Accept a task request, operator instruction, system event, or environmental observation.
+
+Assign or reference a task identifier and preserve the available request context.
+
+### Stage 2 — Interpret
+
+Resolve the objective, entities, semantic relationships, requirements, and expected outcomes using the applicable ontology and profile.
+
+Record unresolved ambiguity and obtain clarification where required.
+
+### Stage 3 — Assess
+
+Identify candidate capabilities, tools, interfaces, target systems, and dependencies.
+
+Evaluate their declared availability and compatibility with the requested operation.
+
+### Stage 4 — Plan
+
+Generate a structured action proposal containing the intended operation, target, preconditions, constraints, expected outcome, and verification requirements.
+
+### Stage 5 — Authorize
+
+Evaluate the proposal against the applicable policy and authorization context.
+
+If approval is required, suspend execution until a valid approval is received. If authorization is denied, do not dispatch the governed action.
+
+### Stage 6 — Dispatch and execute
+
+Submit the authorized action through the appropriate controlled execution interface.
+
+Record the dispatch attempt and preserve the response available from the target interface.
+
+### Stage 7 — Observe and verify
+
+Collect available feedback and evaluate it against the defined acceptance criteria.
+
+Distinguish among dispatch acceptance, execution completion, and independently supported outcome verification.
+
+### Stage 8 — Record and update
+
+Associate the result with the task and relevant provenance records. Update the task state and operational context as supported by the implementation.
+
+Where the result is uncertain or a fault occurs, preserve that status and follow the defined recovery, escalation, or retry policy.
+
+## 5. Action and Outcome State Distinctions
+
+The architecture defines the following distinctions:
+
+| Status | Meaning |
+|---|---|
+| `PROPOSED` | An action has been described but not authorized |
+| `AWAITING_AUTHORIZATION` | Required permission or approval remains outstanding |
+| `DENIED` | The action has not been authorized |
+| `AUTHORIZED` | The required authorization checks have passed |
+| `DISPATCHED` | The execution request has been submitted to the target interface |
+| `EXECUTING` | The target reports or the runtime records that execution is in progress |
+| `EXECUTION_REPORTED_COMPLETE` | The available interface reports completion |
+| `VERIFIED` | Available evidence satisfies the defined acceptance criteria |
+| `FAILED` | The operation or its acceptance criteria failed |
+| `UNCERTAIN` | Available evidence is insufficient to establish the outcome |
+| `BLOCKED` | The process cannot safely or validly proceed under current conditions |
+| `REVOKED` | The relevant authority has been withdrawn |
+
+These are proposed status definitions. Implementations may refine them, but must preserve the distinction between permission, execution, and verified outcome.
+
+In particular, `EXECUTION_REPORTED_COMPLETE` must not automatically imply `VERIFIED`.
+
+## 6. Task State, Faults, and Recovery
+
+ROBOAGENTIC is specified as a stateful agent. Its task processing must account for more than a linear sequence of successful operations.
+
+Relevant conditions include:
+
+- Missing or ambiguous task requirements.
+- Unavailable or incompatible capabilities.
+- Denied authorization or pending approval.
+- Expired permissions or revoked authority.
+- Target-system faults or communication failures.
+- Incomplete, contradictory, or delayed feedback.
+- Failure to satisfy outcome acceptance criteria.
+- Changes in configuration or operating conditions.
+
+A conforming implementation should define transition rules, timeouts, retry limits, idempotency behavior where applicable, escalation paths, and recovery procedures.
+
+Retrying an operation must not be assumed safe in every case. The implementation must consider whether repeating the action could create duplicate effects, physical hazards, inconsistent state, or unauthorized consequences.
+
+When evidence is insufficient, the agent should preserve an uncertain status rather than report an unsupported success.
+
+## 7. Provenance Association Model
+
+For each governed task, the implementation should associate available records for:
+
+1. Task identity and original request.
+2. Agent identity and semantic profile version.
+3. Relevant ontology, capability, policy, and configuration versions.
+4. Interpreted objective and structured action proposal.
+5. Authorization decision and any required approval.
+6. Execution interface, target, and dispatch attempt.
+7. Execution response and relevant observations.
+8. Verification criteria, evidence references, and resulting status.
+9. Faults, retries, recovery actions, and lifecycle events.
+
+These associations establish a reference model for tracing how an objective led to a proposed action, what authority permitted execution, what the target reported, and what evidence supports the final status.
+
+The architecture does not presume that every deployment has access to every listed evidence type. Missing evidence must be represented as missing rather than fabricated.
+
+## 8. Reference Task Example
+
+**Objective:** Inspect station three and report any problems.
+
+**Target identifier:** `station-3`
+
+**Execution domain:** Robotics and physical systems.
+
+A reference implementation would:
+
+1. Resolve the station identifier and the intended meaning of inspection.
+2. Determine which registered sensors, tools, or robotic capabilities are relevant.
+3. Check availability, target compatibility, and required operating constraints.
+4. Produce a structured action proposal and define the expected inspection result.
+5. Request any required authorization before dispatch.
+6. Submit the authorized operation through the appropriate adapter.
+7. Collect the returned observations or inspection results.
+8. Evaluate the evidence against the inspection criteria.
+9. Report the task as verified, failed, uncertain, or blocked, as supported by the evidence.
+10. Associate the result with the applicable task, identity, authorization, and provenance records.
+
+This example describes a reference workflow. It does not assert that a station, robot, connector, inspection capability, or deployed ROBOAGENTIC runtime currently exists.
+
+## 9. Safety and Authority Boundaries
+
+The architecture separates semantic intelligence from execution authority.
+
+The agent may interpret objectives and propose actions, but the actual execution path must enforce the applicable authorization and safety requirements.
+
+A deployment should provide:
+
+- An explicit authorization boundary between planning and execution.
+- Independent safety controls appropriate to the connected equipment.
+- Defined behavior for revoked credentials and changed permissions.
+- Validation of target identifiers, interface compatibility, and required preconditions.
+- Controlled handling of faults, uncertainty, and incomplete evidence.
+- Audit records for relevant decisions and execution events.
+- Appropriate isolation and access controls for connected tools and systems.
+
+No natural-language statement, generated action proposal, or model confidence value should by itself be treated as proof of authorization or physical safety.
+
+## 10. Candidate Technical Contribution for IP Review
+
+The candidate technical contribution described in this disclosure is the coordinated architecture connecting:
+
+- Ontology-based objective interpretation.
+- Identity and capability resolution.
+- Structured action proposals.
+- Policy-enforced authorization.
+- Controlled execution through registered interfaces.
+- Feedback-based outcome verification.
+- Provenance associations across the task lifecycle.
+- Explicit handling of denied, blocked, failed, revoked, and uncertain states.
+
+A further candidate contribution is the preservation of distinct evidence-backed statuses for an action's proposal, authorization, dispatch, reported completion, and verified outcome.
+
+These concepts are presented for technical disclosure and evaluation. Their novelty, non-obviousness, eligibility, and protectability are not established by this document and require appropriate prior-art and legal review.
+
+Any eventual patent claims should be developed from the actual technical implementation and supported details, rather than assuming that the entire reference architecture is novel.
+
+## 11. Relationship to the PITN Infrastructure
+
+PITN supplies the foundational semantic identity, ontology, capability definitions, governance conventions, physical capability mappings, and provenance framework.
+
+ROBOAGENTIC applies those foundations through the functional processes that interpret objectives, assess capabilities, prepare proposals, obtain authorization, invoke approved interfaces, evaluate outcomes, and associate evidence.
+
+The intended division is:
+
+**PITN establishes semantic meaning, identity, capability definitions, governance context, and provenance foundations.**
+
+**ROBOAGENTIC uses those foundations to coordinate governed, stateful, and verifiable execution.**
+
+The interfaces and contracts between these layers must be defined and implemented for the architecture to operate in a deployed system.
+
+## 12. Conclusion
+
+ROBOAGENTIC is specified as a functional intelligence and execution agent whose operational process connects what a task means, what the agent can do, what it is permitted to do, what an execution interface reports, and what evidence supports the resulting outcome.
+
+The architecture emphasizes governed execution, explicit task state, feedback-based verification, and traceable provenance rather than treating a generated plan or action request as proof of successful execution.
+
+**ROBOAGENTIC — The functional intelligence and execution agent of the PITN ecosystem.**
+
+Intelligence that interprets. Agency that acts. Infrastructure that establishes meaning and trust.
+
+---
+
+**Document control:** IP-ROBOAGENTIC-002  
+**Version:** 1.0.0  
+**Status:** Proposed reference architecture; implementation and legal status require independent verification.
