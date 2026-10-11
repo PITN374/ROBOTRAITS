@@ -44,7 +44,7 @@ The architectural relationship is:
 
 PITN.ai governance and identity → ROBOPARTS component and lifecycle records → robot or agent identity → ROBOTRAITS behavioral trait profile → capabilities and behavioral policies → operational context and safety constraints → observed performance and documented adaptation.
 
-RO BOPARTS represents component, machine, assembly, and lifecycle relationships. ROBOTRAITS represents computational behavioral configuration and the semantics needed to describe that configuration. ROBOAGENTIC identifies the associated autonomous-agent initiative within this architecture.
+ROBOPARTS represents component, machine, assembly, and lifecycle relationships. ROBOTRAITS represents computational behavioral configuration and the semantics needed to describe that configuration. ROBOAGENTIC identifies the associated autonomous-agent initiative within this architecture.
 
 Component identity is distinct from behavioral configuration. A declared trait value does not itself establish physical capability or operational authorization.
 
