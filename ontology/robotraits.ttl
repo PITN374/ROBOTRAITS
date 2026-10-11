@@ -1,0 +1,403 @@
+ROBOTRAITS Core Ontology
+
+Project: PITN.ai / ROBOTRAITS / ROBOAGENTIC
+Attribution: Aaron Bailot / PowerInTheNumbers.ai
+Ontology version: 3.1.0
+Format: RDF Turtle / OWL 2
+Documentation date: 2026-10-11
+
+@prefix rt: <https://w3id.org/robotraits#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://w3id.org/robotraits/ontology/3.1.0>
+    a owl:Ontology ;
+    owl:versionIRI
+        <https://w3id.org/robotraits/ontology/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
+    dcterms:title
+        "ROBOTRAITS Trait-Based Robotic Intelligence Ontology"@en ;
+    dcterms:creator "Aaron Bailot" ;
+    dcterms:publisher "PowerInTheNumbers.ai" ;
+    dcterms:description
+        "A declarative ontology for computational behavioral traits,
+        robotic agents, behavioral policies, capabilities, context,
+        adaptation, identity, and provenance."@en ;
+    dcterms:created "2026-10-11"^^xsd:date ;
+    rdfs:comment
+        "ROBOTRAITS defines semantic representations for computational
+        behavioral configuration. Trait values do not independently
+        establish physical capability or operational authorization."@en .
+
+# ============================================================
+# Foundational classes
+# ============================================================
+
+rt:RobotraitsAgent
+    a owl:Class ;
+    rdfs:label "ROBOTRAITS agent"@en ;
+    rdfs:comment
+        "An intelligent robotic or autonomous agent represented
+        using the ROBOTRAITS ontology."@en .
+
+rt:BehavioralTrait
+    a owl:Class ;
+    rdfs:label "Behavioral trait"@en ;
+    rdfs:comment
+        "A defined computational dimension that may influence
+        information processing, action selection, communication,
+        coordination, or adaptation."@en .
+
+rt:BehavioralTraitProfile
+    a owl:Class ;
+    rdfs:label "Behavioral trait profile"@en ;
+    rdfs:comment
+        "A versioned collection of trait values associated with
+        an agent or an identified configuration."@en .
+
+rt:TraitValue
+    a owl:Class ;
+    rdfs:label "Trait value"@en ;
+    rdfs:comment
+        "An assigned or estimated value of a defined trait within
+        a particular profile."@en .
+
+rt:BehavioralPolicy
+    a owl:Class ;
+    rdfs:label "Behavioral policy"@en ;
+    rdfs:comment
+        "A computational specification describing how inputs,
+        objectives, trait parameters, and constraints influence
+        action selection."@en .
+
+rt:CognitiveProcess
+    a owl:Class ;
+    rdfs:label "Cognitive process"@en ;
+    rdfs:comment
+        "A computational process for inference, planning,
+        memory retrieval, evaluation, or information processing."@en .
+
+rt:OperationalContext
+    a owl:Class ;
+    rdfs:label "Operational context"@en ;
+    rdfs:comment
+        "Environmental, task-related, social, or system conditions
+        under which an agent operates."@en .
+
+rt:AgentCapability
+    a owl:Class ;
+    rdfs:label "Agent capability"@en ;
+    rdfs:comment
+        "A technical operation or task an agent is equipped and
+        authorized to perform."@en .
+
+rt:OperationalRole
+    a owl:Class ;
+    rdfs:label "Operational role"@en ;
+    rdfs:comment
+        "An assigned function or responsibility in an operational
+        setting."@en .
+
+rt:AdaptationRecord
+    a owl:Class ;
+    rdfs:label "Adaptation record"@en ;
+    rdfs:comment
+        "A record of a documented change to a trait value,
+        profile, or behavioral policy."@en .
+
+rt:AgentIdentity
+    a owl:Class ;
+    rdfs:label "Agent identity"@en ;
+    rdfs:comment
+        "An identity record associated with an agent independently
+        of its behavioral configuration."@en .
+
+rt:SafetyConstraint
+    a owl:Class ;
+    rdfs:label "Safety constraint"@en ;
+    rdfs:comment
+        "A constraint that limits permitted actions or behavioral
+        policy execution."@en .
+
+rt:ProvenanceRecord
+    a owl:Class ;
+    rdfs:label "Provenance record"@en ;
+    rdfs:comment
+        "A record describing the origin, method, or history of
+        an assertion, profile, value, or configuration."@en .
+
+rt:MeasurementMethod
+    a owl:Class ;
+    rdfs:label "Measurement method"@en ;
+    rdfs:comment
+        "A method used to obtain, estimate, or assign a trait value."@en .
+
+rt:TraitScale
+    a owl:Class ;
+    rdfs:label "Trait scale"@en ;
+    rdfs:comment
+        "A declared scale and interpretation for trait values."@en .
+
+rt:TraitDimension
+    a owl:Class ;
+    rdfs:subClassOf rt:BehavioralTrait ;
+    rdfs:label "Trait dimension"@en ;
+    rdfs:comment
+        "A named dimension describing a computational behavioral
+        tendency."@en .
+
+# ============================================================
+# Trait dimension vocabulary
+# ============================================================
+
+rt:AnalyticalDepth
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Analytical depth"@en ;
+    skos:definition
+        "The configured tendency to evaluate evidence, compare
+        alternatives, and perform structured inference."@en .
+
+rt:ExploratoryDrive
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Exploratory drive"@en ;
+    skos:definition
+        "The configured tendency to investigate alternatives
+        and seek additional information."@en .
+
+rt:StructuralPreference
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Structural preference"@en ;
+    skos:definition
+        "The configured tendency to favor explicit procedures,
+        organized plans, and systematic execution."@en .
+
+rt:SocialInitiative
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Social initiative"@en ;
+    skos:definition
+        "The configured tendency to initiate communication
+        and coordination."@en .
+
+rt:EmpathicAttunement
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Empathic attunement"@en ;
+    skos:definition
+        "The degree to which an agent uses human cues to adapt
+        communication or assistance."@en .
+
+rt:Assertiveness
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Assertiveness"@en ;
+    skos:definition
+        "The configured tendency to propose actions, communicate
+        recommendations, and take authorized initiative."@en .
+
+rt:RiskTolerance
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Risk tolerance"@en ;
+    skos:definition
+        "The permitted preference for action under uncertainty,
+        subject to safety and authorization constraints."@en .
+
+rt:Adaptability
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Adaptability"@en ;
+    skos:definition
+        "The tendency or capacity to adjust behavior to changing
+        conditions and task requirements."@en .
+
+rt:PrecisionOrientation
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Precision orientation"@en ;
+    skos:definition
+        "The configured emphasis on accuracy, verification,
+        consistency, and detail."@en .
+
+rt:EmotionalReactivity
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Emotional reactivity"@en ;
+    skos:definition
+        "The magnitude of a computationally modeled response
+        to inputs designated as emotionally salient."@en .
+
+rt:EmotionalRegulation
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Emotional regulation"@en ;
+    skos:definition
+        "The degree to which modeled responses remain stable
+        under specified conditions."@en .
+
+rt:CooperativeOrientation
+    a owl:NamedIndividual, rt:TraitDimension ;
+    skos:prefLabel "Cooperative orientation"@en ;
+    skos:definition
+        "The configured tendency to coordinate actions and
+        pursue compatible objectives with others."@en .
+
+# ============================================================
+# Object properties
+# ============================================================
+
+rt:hasTraitProfile
+    a owl:ObjectProperty ;
+    rdfs:domain rt:RobotraitsAgent ;
+    rdfs:range rt:BehavioralTraitProfile ;
+    rdfs:label "has trait profile"@en .
+
+rt:containsTraitValue
+    a owl:ObjectProperty ;
+    rdfs:domain rt:BehavioralTraitProfile ;
+    rdfs:range rt:TraitValue ;
+    rdfs:label "contains trait value"@en .
+
+rt:specifiesTrait
+    a owl:ObjectProperty ;
+    rdfs:domain rt:TraitValue ;
+    rdfs:range rt:BehavioralTrait ;
+    rdfs:label "specifies trait"@en .
+
+rt:usesScale
+    a owl:ObjectProperty ;
+    rdfs:domain rt:TraitValue ;
+    rdfs:range rt:TraitScale ;
+    rdfs:label "uses scale"@en .
+
+rt:usesMeasurementMethod
+    a owl:ObjectProperty ;
+    rdfs:domain rt:TraitValue ;
+    rdfs:range rt:MeasurementMethod ;
+    rdfs:label "uses measurement method"@en .
+
+rt:influencesBehavioralPolicy
+    a owl:ObjectProperty ;
+    rdfs:domain rt:BehavioralTrait ;
+    rdfs:range rt:BehavioralPolicy ;
+    rdfs:label "influences behavioral policy"@en .
+
+rt:executesPolicy
+    a owl:ObjectProperty ;
+    rdfs:domain rt:RobotraitsAgent ;
+    rdfs:range rt:BehavioralPolicy ;
+    rdfs:label "executes policy"@en .
+
+rt:usesCognitiveProcess
+    a owl:ObjectProperty ;
+    rdfs:domain rt:RobotraitsAgent ;
+    rdfs:range rt:CognitiveProcess ;
+    rdfs:label "uses cognitive process"@en .
+
+rt:operatesInContext
+    a owl:ObjectProperty ;
+    rdfs:domain rt:RobotraitsAgent ;
+    rdfs:range rt:OperationalContext ;
+    rdfs:label "operates in context"@en .
+
+rt:hasCapability
+    a owl:ObjectProperty ;
+    rdfs:domain rt:RobotraitsAgent ;
+    rdfs:range rt:AgentCapability ;
+    rdfs:label "has capability"@en .
+
+rt:performsRole
+    a owl:ObjectProperty ;
+    rdfs:domain rt:RobotraitsAgent ;
+    rdfs:range rt:OperationalRole ;
+    rdfs:label "performs role"@en .
+
+rt:hasSafetyConstraint
+    a owl:ObjectProperty ;
+    rdfs:domain rt:RobotraitsAgent ;
+    rdfs:range rt:SafetyConstraint ;
+    rdfs:label "has safety constraint"@en .
+
+rt:hasAdaptationRecord
+    a owl:ObjectProperty ;
+    rdfs:domain rt:RobotraitsAgent ;
+    rdfs:range rt:AdaptationRecord ;
+    rdfs:label "has adaptation record"@en .
+
+rt:hasAgentIdentity
+    a owl:ObjectProperty ;
+    rdfs:domain rt:RobotraitsAgent ;
+    rdfs:range rt:AgentIdentity ;
+    rdfs:label "has agent identity"@en .
+
+rt:hasProvenance
+    a owl:ObjectProperty ;
+    rdfs:range rt:ProvenanceRecord ;
+    rdfs:label "has provenance"@en .
+
+rt:supersedesProfile
+    a owl:ObjectProperty ;
+    rdfs:domain rt:BehavioralTraitProfile ;
+    rdfs:range rt:BehavioralTraitProfile ;
+    rdfs:label "supersedes profile"@en .
+
+# ============================================================
+# Datatype properties
+# ============================================================
+
+rt:agentIdentifier
+    a owl:DatatypeProperty ;
+    rdfs:domain rt:AgentIdentity ;
+    rdfs:range xsd:string ;
+    rdfs:label "agent identifier"@en .
+
+rt:profileIdentifier
+    a owl:DatatypeProperty ;
+    rdfs:domain rt:BehavioralTraitProfile ;
+    rdfs:range xsd:string ;
+    rdfs:label "profile identifier"@en .
+
+rt:profileVersion
+    a owl:DatatypeProperty ;
+    rdfs:domain rt:BehavioralTraitProfile ;
+    rdfs:range xsd:string ;
+    rdfs:label "profile version"@en .
+
+rt:numericValue
+    a owl:DatatypeProperty ;
+    rdfs:domain rt:TraitValue ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "numeric value"@en .
+
+rt:confidenceValue
+    a owl:DatatypeProperty ;
+    rdfs:domain rt:TraitValue ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "confidence value"@en .
+
+rt:validFrom
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "valid from"@en .
+
+rt:validUntil
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "valid until"@en .
+
+rt:measurementOrigin
+    a owl:DatatypeProperty ;
+    rdfs:domain rt:TraitValue ;
+    rdfs:range xsd:string ;
+    rdfs:label "measurement origin"@en ;
+    rdfs:comment
+        "A documented value such as measured, configured,
+        estimated, learned, or user-specified."@en .
+
+rt:changeReason
+    a owl:DatatypeProperty ;
+    rdfs:domain rt:AdaptationRecord ;
+    rdfs:range xsd:string ;
+    rdfs:label "change reason"@en .
+
+rt:definition
+    a owl:DatatypeProperty ;
+    rdfs:domain rt:BehavioralTrait ;
+    rdfs:range xsd:string ;
+    rdfs:label "definition"@en .
