@@ -1,0 +1,269 @@
+## `ontology/robotraits-example.ttl`
+
+turtle
+```
+
+@prefix rt: <https://w3id.org/robotraits#> .
+@prefix ex: <https://example.org/robotraits/example/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# ============================================================
+# PITN.ai / ROBOTRAITS / ROBOAGENTIC
+# INTELLECTUAL PROPERTY ATTRIBUTION
+# Record: IP-011
+# Ontology release: 3.1.0
+# Documentation date: 2026-10-11
+# ============================================================
+
+ex:ROBOTRAITS-Project
+    a ex:Project ;
+    rdfs:label "PITN.ai / ROBOTRAITS / ROBOAGENTIC"@en ;
+    rdfs:comment
+        "Project attribution for the ROBOTRAITS trait-based robotic
+        intelligence ontology and associated semantic architecture.
+        Original project authorship and intellectual property claims
+        are documented in IP-011 and the associated provenance records."@en ;
+    ex:ipRecord "IP-011" ;
+    ex:projectRelease "3.1.0" ;
+    ex:attributedTo "Aaron Bailot" ;
+    ex:organization "Powerinthenumbers.ai" ;
+    ex:relatedInitiative "PITN.ai" ;
+    ex:relatedInfrastructure "ROBOPARTS" ;
+    ex:relatedSystem "ROBOAGENTIC" .
+
+# ============================================================
+# EXAMPLE ROBOTIC AGENT
+# ============================================================
+
+ex:agent-0001
+    a rt:RobotraitsAgent ;
+    rdfs:label "ROBOTRAITS Example Agent"@en ;
+    rt:hasAgentIdentity ex:identity-0001 ;
+    rt:hasTraitProfile ex:profile-0001 ;
+    rt:hasCapability ex:capability-research ;
+    rt:hasSafetyConstraint ex:safety-0001 ;
+    rt:executesPolicy ex:policy-0001 ;
+    rt:operatesInContext ex:context-0001 ;
+    rt:hasProvenance ex:agent-provenance-0001 .
+
+# ============================================================
+# AGENT IDENTITY
+# ============================================================
+
+ex:identity-0001
+    a rt:AgentIdentity ;
+    rdfs:label "Example Agent Identity"@en ;
+    rt:agentIdentifier "rt-agent-0001" .
+
+# ============================================================
+# VERSIONED BEHAVIORAL TRAIT PROFILE
+# ============================================================
+
+ex:profile-0001
+    a rt:BehavioralTraitProfile ;
+    rdfs:label "Example Behavioral Trait Profile"@en ;
+    rt:profileIdentifier "rt-profile-0001" ;
+    rt:profileVersion "1.0.0" ;
+    rt:validFrom "2026-10-11T00:00:00Z"^^xsd:dateTime ;
+    rt:containsTraitValue
+        ex:analytical-depth-value ,
+        ex:exploratory-drive-value ,
+        ex:structural-preference-value ,
+        ex:social-initiative-value ,
+        ex:empathic-attunement-value ,
+        ex:assertiveness-value ,
+        ex:risk-tolerance-value ,
+        ex:adaptability-value ,
+        ex:precision-orientation-value ,
+        ex:emotional-reactivity-value ,
+        ex:emotional-regulation-value ,
+        ex:cooperative-orientation-value ;
+    rt:hasProvenance ex:profile-provenance-0001 .
+
+# ============================================================
+# TRAIT VALUES
+# Normalized example values: 0.0–1.0
+# These values are illustrative configuration data.
+# ============================================================
+
+ex:analytical-depth-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:AnalyticalDepth ;
+    rt:numericValue "0.90"^^xsd:decimal ;
+    rt:confidenceValue "0.85"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:exploratory-drive-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:ExploratoryDrive ;
+    rt:numericValue "0.75"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:structural-preference-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:StructuralPreference ;
+    rt:numericValue "0.85"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:social-initiative-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:SocialInitiative ;
+    rt:numericValue "0.70"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:empathic-attunement-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:EmpathicAttunement ;
+    rt:numericValue "0.80"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:assertiveness-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:Assertiveness ;
+    rt:numericValue "0.65"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:risk-tolerance-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:RiskTolerance ;
+    rt:numericValue "0.30"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:adaptability-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:Adaptability ;
+    rt:numericValue "0.85"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:precision-orientation-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:PrecisionOrientation ;
+    rt:numericValue "0.95"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:emotional-reactivity-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:EmotionalReactivity ;
+    rt:numericValue "0.35"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:emotional-regulation-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:EmotionalRegulation ;
+    rt:numericValue "0.90"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+ex:cooperative-orientation-value
+    a rt:TraitValue ;
+    rt:specifiesTrait rt:CooperativeOrientation ;
+    rt:numericValue "0.85"^^xsd:decimal ;
+    rt:measurementOrigin "configured" ;
+    rt:hasProvenance ex:trait-provenance-0001 .
+
+# ============================================================
+# CAPABILITY
+# ============================================================
+
+ex:capability-research
+    a rt:AgentCapability ;
+    rdfs:label "Research and information analysis"@en ;
+    rdfs:comment
+        "Illustrative capability declaration; actual capability
+        requires independent implementation and verification."@en .
+
+# ============================================================
+# SAFETY CONSTRAINT
+# ============================================================
+
+ex:safety-0001
+    a rt:SafetyConstraint ;
+    rdfs:label "Authorization and safety precedence"@en ;
+    rdfs:comment
+        "Behavioral trait preferences must not override applicable
+        safety constraints, authorization requirements, or verified
+        operational limits."@en .
+
+# ============================================================
+# BEHAVIORAL POLICY
+# ============================================================
+
+ex:policy-0001
+    a rt:BehavioralPolicy ;
+    rdfs:label "Evidence-led controlled action policy"@en ;
+    rdfs:comment
+        "Illustrative policy emphasizing evidence evaluation,
+        precision, uncertainty management, and authorized action."@en .
+
+# ============================================================
+# OPERATIONAL CONTEXT
+# ============================================================
+
+ex:context-0001
+    a rt:OperationalContext ;
+    rdfs:label "Controlled research environment"@en ;
+    rdfs:comment
+        "Illustrative environment for research, analysis,
+        information retrieval, and controlled agent evaluation."@en .
+
+# ============================================================
+# PROVENANCE AND IP DOCUMENTATION REFERENCES
+# ============================================================
+
+ex:agent-provenance-0001
+    a rt:ProvenanceRecord ;
+    rdfs:label "Example agent provenance"@en ;
+    rdfs:comment
+        "Example agent record associated with ROBOTRAITS ontology
+        release 3.1.0. This record does not assert a historical
+        creation date for the underlying agent implementation."@en ;
+    ex:ipRecordReference "IP-011" .
+
+ex:profile-provenance-0001
+    a rt:ProvenanceRecord ;
+    rdfs:label "Example profile provenance"@en ;
+    rdfs:comment
+        "Illustrative profile configuration for demonstrating
+        the ROBOTRAITS trait representation model."@en ;
+    ex:ipRecordReference "IP-011" .
+
+ex:trait-provenance-0001
+    a rt:ProvenanceRecord ;
+    rdfs:label "Example trait configuration provenance"@en ;
+    rdfs:comment
+        "Trait values in this example are illustrative configured
+        values and are not presented as empirical measurements
+        or validated performance results."@en ;
+    ex:ipRecordReference "IP-011" .
+
+# ============================================================
+# PROJECT ATTRIBUTION
+# ============================================================
+
+ex:project-attribution-0001
+    a ex:ProjectAttributionRecord ;
+    rdfs:label "PITN ROBOTRAITS project attribution"@en ;
+    ex:projectName "ROBOTRAITS" ;
+    ex:associatedProject "PITN.ai" ;
+    ex:associatedSystem "ROBOAGENTIC" ;
+    ex:attributedTo "Aaron Bailot" ;
+    ex:organization "Powerinthenumbers.ai" ;
+    ex:ipRecord "IP-011" ;
+    ex:ontologyRelease "3.1.0" ;
+    rdfs:comment
+        "Project attribution and claimed authorship of original
+        ROBOTRAITS project materials are documented in IP-011
+        and the associated source-control and provenance records."@en .
+```
