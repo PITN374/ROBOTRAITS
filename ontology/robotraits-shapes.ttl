@@ -1,0 +1,328 @@
+## `robotraits-shapes.ttl`
+
+turtle
+```
+
+@prefix rt: <https://w3id.org/robotraits#> .
+@prefix rts: <https://w3id.org/robotraits/shapes#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/robotraits/shapes/3.1.0>
+    a owl:Ontology ;
+    rdfs:label "ROBOTRAITS SHACL Shapes 3.1.0"@en ;
+    rdfs:comment
+        "Validation constraints for the ROBOTRAITS trait-based
+        robotic intelligence ontology, maintained under the
+        PITN.ai, ROBOTRAITS, and ROBOAGENTIC initiatives."@en ;
+    owl:versionInfo "3.1.0" .
+
+# ============================================================
+# AGENT VALIDATION
+# ============================================================
+
+rts:AgentShape
+    a sh:NodeShape ;
+    sh:targetClass rt:RobotraitsAgent ;
+    rdfs:label "ROBOTRAITS Agent Shape"@en ;
+
+    sh:property [
+        sh:path rt:hasAgentIdentity ;
+        sh:class rt:AgentIdentity ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message
+            "Each agent must reference exactly one agent identity."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:hasTraitProfile ;
+        sh:class rt:BehavioralTraitProfile ;
+        sh:minCount 1 ;
+        sh:message
+            "Each agent must reference at least one trait profile."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:hasSafetyConstraint ;
+        sh:class rt:SafetyConstraint ;
+        sh:message
+            "Safety constraints must reference defined constraint resources."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:hasCapability ;
+        sh:class rt:AgentCapability ;
+        sh:message
+            "Declared capabilities must reference capability resources."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:executesPolicy ;
+        sh:class rt:BehavioralPolicy ;
+        sh:message
+            "Executed policies must reference behavioral policy resources."@en
+    ] .
+
+# ============================================================
+# AGENT IDENTITY VALIDATION
+# ============================================================
+
+rts:AgentIdentityShape
+    a sh:NodeShape ;
+    sh:targetClass rt:AgentIdentity ;
+    rdfs:label "Agent Identity Shape"@en ;
+
+    sh:property [
+        sh:path rt:agentIdentifier ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:message
+            "An agent identity must have one non-empty identifier."@en
+    ] .
+
+# ============================================================
+# TRAIT PROFILE VALIDATION
+# ============================================================
+
+rts:BehavioralTraitProfileShape
+    a sh:NodeShape ;
+    sh:targetClass rt:BehavioralTraitProfile ;
+    rdfs:label "Behavioral Trait Profile Shape"@en ;
+
+    sh:property [
+        sh:path rt:profileIdentifier ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:message
+            "A trait profile must have one non-empty identifier."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:profileVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^[0-9]+\\.[0-9]+\\.[0-9]+$" ;
+        sh:message
+            "Profile version must use MAJOR.MINOR.PATCH format."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:containsTraitValue ;
+        sh:class rt:TraitValue ;
+        sh:minCount 1 ;
+        sh:message
+            "A trait profile must contain at least one trait value."@en
+    ] ;
+
+    sh:sparql [
+        sh:message
+            "A profile must not contain multiple values for the same trait."@en ;
+        sh:select """
+            PREFIX rt: <https://w3id.org/robotraits#>
+            SELECT $this
+            WHERE {
+                $this rt:containsTraitValue ?v1, ?v2 .
+                ?v1 rt:specifiesTrait ?trait .
+                ?v2 rt:specifiesTrait ?trait .
+                FILTER (?v1 != ?v2)
+            }
+        """
+    ] .
+
+# ============================================================
+# TRAIT VALUE VALIDATION
+# ============================================================
+
+rts:TraitValueShape
+    a sh:NodeShape ;
+    sh:targetClass rt:TraitValue ;
+    rdfs:label "Trait Value Shape"@en ;
+
+    sh:property [
+        sh:path rt:specifiesTrait ;
+        sh:class rt:BehavioralTrait ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message
+            "Each trait value must identify exactly one behavioral trait."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:numericValue ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message
+            "Normalized trait values must be between 0 and 1 inclusive."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:confidenceValue ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message
+            "Confidence values, when supplied, must be between 0 and 1."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:measurementOrigin ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in (
+            "measured"
+            "configured"
+            "estimated"
+            "learned"
+            "user-specified"
+        ) ;
+        sh:message
+            "Declare an approved trait measurement origin."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:usesScale ;
+        sh:class rt:TraitScale ;
+        sh:maxCount 1 ;
+        sh:message
+            "A declared trait scale must reference a TraitScale resource."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:usesMeasurementMethod ;
+        sh:class rt:MeasurementMethod ;
+        sh:maxCount 1 ;
+        sh:message
+            "A measurement method must reference a MeasurementMethod resource."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:hasProvenance ;
+        sh:class rt:ProvenanceRecord ;
+        sh:minCount 1 ;
+        sh:message
+            "Each trait value must reference a provenance record."@en
+    ] .
+
+# ============================================================
+# BEHAVIORAL POLICY VALIDATION
+# ============================================================
+
+rts:BehavioralPolicyShape
+    a sh:NodeShape ;
+    sh:targetClass rt:BehavioralPolicy ;
+    rdfs:label "Behavioral Policy Shape"@en ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message
+            "Each behavioral policy must have a human-readable label."@en
+    ] .
+
+# ============================================================
+# SAFETY CONSTRAINT VALIDATION
+# ============================================================
+
+rts:SafetyConstraintShape
+    a sh:NodeShape ;
+    sh:targetClass rt:SafetyConstraint ;
+    rdfs:label "Safety Constraint Shape"@en ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message
+            "Each safety constraint must have a human-readable label."@en
+    ] .
+
+# ============================================================
+# ADAPTATION RECORD VALIDATION
+# ============================================================
+
+rts:AdaptationRecordShape
+    a sh:NodeShape ;
+    sh:targetClass rt:AdaptationRecord ;
+    rdfs:label "Adaptation Record Shape"@en ;
+
+    sh:property [
+        sh:path rt:changeReason ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:message
+            "Each adaptation record must document its reason for change."@en
+    ] ;
+
+    sh:property [
+        sh:path rt:hasProvenance ;
+        sh:class rt:ProvenanceRecord ;
+        sh:minCount 1 ;
+        sh:message
+            "Each adaptation record must reference provenance."@en
+    ] .
+
+# ============================================================
+# PROVENANCE RECORD VALIDATION
+# ============================================================
+
+rts:ProvenanceRecordShape
+    a sh:NodeShape ;
+    sh:targetClass rt:ProvenanceRecord ;
+    rdfs:label "Provenance Record Shape"@en ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message
+            "Each provenance record must have a human-readable label."@en
+    ] .
+
+# ============================================================
+# VERSIONED PROFILE RELATIONSHIPS
+# ============================================================
+
+rts:ProfileSupersessionShape
+    a sh:NodeShape ;
+    sh:targetClass rt:BehavioralTraitProfile ;
+    rdfs:label "Profile Supersession Shape"@en ;
+
+    sh:property [
+        sh:path rt:supersedesProfile ;
+        sh:class rt:BehavioralTraitProfile ;
+        sh:maxCount 1 ;
+        sh:message
+            "A profile may identify at most one directly superseded profile."@en
+    ] .
+
+# ============================================================
+# COPYRIGHT AND PROJECT ATTRIBUTION
+# ============================================================
+
+rts:ProjectAttribution
+    a owl:NamedIndividual ;
+    rdfs:label
+        "PITN.ai / ROBOTRAITS / ROBOAGENTIC"@en ;
+    rdfs:comment
+        "Project attribution for the ROBOTRAITS trait-based robotic
+        intelligence ontology and its associated semantic architecture."@en .
+```
+
+
+
+
+Next file: `ontology/robotraits-example.ttl` — the example agent, identity, trait profile, and provenance data used to demonstrate the ontology and exercise its validation rules.
