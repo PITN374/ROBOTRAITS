@@ -1,0 +1,440 @@
+Here is the complete document, preserved as provided and formatted for easy copying and uploading.
+
+text
+```
+The Humanoid Maintenance Ontology (HMO) defines the entities, relationships, and lifecycle processes that comprise the future humanoid maintenance ecosystem. Rather than forecasting individual companies or products, it establishes a structured knowledge model describing how humanoid robots, their components, maintenance services, and supporting industries interact throughout the operational life of a humanoid.
+
+The ontology is intended as a conceptual foundation for research, AI reasoning, digital marketplaces, asset management systems, predictive maintenance, and industry analysis.
+
+Level 1 — Core Domain
+
+The Humanoid Maintenance Economy consists of five primary domains:
+
+Humanoid Robots
+
+Components
+
+Maintenance Services
+
+Economic Actors
+
+Digital Infrastructure
+
+Each domain contains entities that interact through defined relationships.
+
+Domain 1 — Humanoid Robot
+
+Entity:
+
+Humanoid Robot
+
+Attributes:
+
+Manufacturer
+
+Model
+
+Generation
+
+Operating Hours
+
+Deployment Sector
+
+Age
+
+Maintenance Status
+
+Remaining Service Life
+
+Relationships:
+
+Humanoid Robot
+
+contains → Components
+
+requires → Maintenance
+
+generates → Maintenance Events
+
+owned by → Owner
+
+serviced by → Service Provider
+
+monitored by → AI Diagnostic System
+
+Domain 2 — Components
+
+Components divide into four major classes.
+
+Cosmetic Components
+
+Hair System
+
+Synthetic Skin
+
+Eyebrows
+
+Eyelashes
+
+Fingernails
+
+Facial Coverings
+
+Properties
+
+visible
+
+replaceable
+
+customizable
+
+degradable
+
+Lifecycle
+
+Manufactured
+
+↓
+
+Installed
+
+↓
+
+Maintained
+
+↓
+
+Replaced
+
+↓
+
+Recycled
+
+Mechanical Components
+
+Bearings
+
+Gearboxes
+
+Actuators
+
+Motors
+
+Joint Assemblies
+
+Foot Modules
+
+Properties
+
+fatigue
+
+wear
+
+lubrication
+
+service interval
+
+Electrical Components
+
+Battery
+
+Cameras
+
+Microphones
+
+Speakers
+
+Wiring Harness
+
+Sensors
+
+Properties
+
+operational lifespan
+
+calibration
+
+replacement cycle
+
+Thermal Components
+
+Cooling Fan
+
+Pump
+
+Heat Sink
+
+Filter
+
+Cooling System
+
+Properties
+
+airflow
+
+contamination
+
+operating temperature
+
+Domain 3 — Maintenance
+
+Maintenance consists of five categories.
+
+Preventive Maintenance
+
+inspection
+
+cleaning
+
+lubrication
+
+calibration
+
+Corrective Maintenance
+
+repair
+
+replacement
+
+restoration
+
+Predictive Maintenance
+
+AI diagnostics
+
+wear prediction
+
+failure forecasting
+
+Cosmetic Maintenance
+
+hair replacement
+
+skin restoration
+
+appearance customization
+
+Upgrade Maintenance
+
+battery upgrades
+
+processor upgrades
+
+sensor upgrades
+
+Domain 4 — Economic Actors
+
+Manufacturer
+
+produces
+
+↓
+
+Humanoid Robot
+
+Owner
+
+owns
+
+↓
+
+Humanoid Robot
+
+Service Provider
+
+performs
+
+↓
+
+Maintenance
+
+Supplier
+
+provides
+
+↓
+
+Replacement Parts
+
+Marketplace
+
+connects
+
+↓
+
+Owners
+
+↓
+
+Suppliers
+
+↓
+
+Technicians
+
+↓
+
+Manufacturers
+
+Domain 5 — Digital Infrastructure
+
+Knowledge Base
+
+contains
+
+service manuals
+
+component specifications
+
+compatibility tables
+
+maintenance history
+
+Marketplace
+
+contains
+
+replacement parts
+
+service providers
+
+diagnostics
+
+pricing
+
+AI System
+
+analyzes
+
+maintenance history
+
+failure rates
+
+replacement intervals
+
+predictive servicing
+
+Top Ten Component Ontology
+
+Component | Class | Maintenance Frequency | Economic Category
+
+Hair System | Cosmetic | High | Recurring Service
+
+Synthetic Skin | Cosmetic | High | Recurring Service
+
+Battery | Electrical | Medium | Replacement
+
+Finger Pads | Mechanical | High | Consumable
+
+Foot Soles | Mechanical | High | Consumable
+
+Bearings | Mechanical | Medium | Preventive Maintenance
+
+Gearboxes | Mechanical | Medium | Preventive Maintenance
+
+Actuators | Mechanical | Medium | Capital Replacement
+
+Vision Systems | Electrical | Medium | Upgrade & Replacement
+
+Cooling Systems | Thermal | Medium | Preventive Maintenance
+
+Economic Ontology
+
+Humanoid Economy
+
+contains
+
+Manufacturing
+
+↓
+
+Deployment
+
+↓
+
+Operation
+
+↓
+
+Maintenance
+
+↓
+
+Replacement Parts
+
+↓
+
+Software
+
+↓
+
+Recycling
+
+Each deployed humanoid generates recurring economic activity throughout its operational lifetime through inspection, servicing, replacement components, upgrades, and refurbishment.
+
+Hair System Ontology
+
+Hair System
+
+is a
+
+Cosmetic Component
+
+Hair System
+
+requires
+
+cleaning
+
+brushing
+
+styling
+
+replacement
+
+inspection
+
+Hair System
+
+has properties
+
+fiber material
+
+density
+
+color
+
+texture
+
+attachment method
+
+durability
+
+UV resistance
+
+heat resistance
+
+Hair System
+
+supports
+
+identity
+
+personalization
+
+occupational appearance
+
+consumer preference
+
+Unlike most mechanical components, the Hair System possesses both functional and aesthetic value, making it a unique recurring maintenance category within the ontology.
+
+Digital Asset Layer
+
+As specialized industries mature, digital infrastructure often develops around narrowly defined knowledge domains. Within this ontology, category-specific domains (for example, a name such as HumanoidHair.com) represent one possible form of digital infrastructure that could organize information, products, research, or services related to a particular component class. Their eventual importance would depend on the evolution of the underlying market rather than the ontology itself.
+
+Conclusion
+
+The Humanoid Maintenance Ontology defines the humanoid maintenance ecosystem as an interconnected network of entities, relationships, and lifecycle processes. Instead of forecasting a single outcome, it provides a reusable conceptual framework that can support databases, AI reasoning systems, maintenance software, digital marketplaces, and future research into the economics and operation of large-scale humanoid deployments.
+```
+
+Ready to upload: Copy the entire text block into your document editor and save it as a `.txt` or `.docx` file.
