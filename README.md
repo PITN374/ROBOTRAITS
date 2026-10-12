@@ -1,8 +1,6 @@
 # ROBOTRAITS
-Robotraits.ai under PITN.ai umbrella 
-## Ownership and Licensing
 
-**ROBOTRAITS.ai — Operates under the PITN.ai Umbrella**
+**ROBOTRAITS.ai — Under the PITN.ai Umbrella**
 
 Copyright © 2026 Aaron Bailot (PITN). All rights reserved in original materials owned by Aaron Bailot.
 
