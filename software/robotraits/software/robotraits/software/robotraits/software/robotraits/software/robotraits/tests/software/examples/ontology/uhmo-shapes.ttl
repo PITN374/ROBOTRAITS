@@ -1,0 +1,510 @@
+@prefix uhmo: <https://w3id.org/uhmo#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# UHMO SHACL VALIDATION SHAPES
+# Version: 0.1.0-draft
+# Status: Proposed; not yet validator-tested
+#
+# Intended ontology:
+#   https://w3id.org/uhmo
+#
+# This file defines data-quality rules.
+# It does not implement robotic control or certify safety.
+#################################################################
+
+<https://w3id.org/uhmo/shapes>
+    a owl:Ontology ;
+    rdfs:label "UHMO SHACL Validation Shapes"@en ;
+    owl:versionInfo "0.1.0-draft" ;
+    rdfs:comment
+        "Validation shapes for UHMO component records, actuators,
+        sensors, robotic hands, manipulation tasks, and safety
+        documentation. Load alongside the UHMO ontology."@en .
+
+#################################################################
+# 1. GENERAL COMPONENT VALIDATION
+#################################################################
+
+uhmo:ComponentShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:Component ;
+    sh:property [
+        sh:path uhmo:uniqueIdentifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "Every component must have one non-empty unique identifier."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:manufacturer ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "If supplied, manufacturer must be a non-empty string."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:modelNumber ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "If supplied, model number must be a non-empty string."@en
+    ] .
+
+#################################################################
+# 2. ACTUATOR VALIDATION
+#################################################################
+
+uhmo:ActuatorShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:Actuator ;
+    sh:property [
+        sh:path uhmo:uniqueIdentifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "An actuator must have exactly one non-empty identifier."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:manufacturer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "An actuator must specify its manufacturer."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:modelNumber ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "An actuator must specify its model number."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:torqueCapacity ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Torque capacity must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:forceOutput ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Force output must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:strokeLength ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Stroke length must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:angularRange ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Angular range must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:speed ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Speed must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:precision ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Precision must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:resolution ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Resolution must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:repeatability ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Repeatability must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:efficiency ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Efficiency must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:energyConsumption ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Energy consumption must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:weight ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Weight must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:operatingTemperature ;
+        sh:datatype xsd:decimal ;
+        sh:message
+            "Operating temperature must be a decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:mtbfHours ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "MTBF hours must be non-negative."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:serviceLife ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Service life must be non-negative."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:maintenanceInterval ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Maintenance interval must be non-negative."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:cost ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message
+            "Cost must be a non-negative decimal."@en
+    ] ;
+    sh:property [
+        sh:path uhmo:dimensions ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path uhmo:material ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path uhmo:ipRating ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path uhmo:sustainabilityProfile ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path uhmo:regulatoryCertification ;
+        sh:datatype xsd:string
+    ] .
+
+#################################################################
+# 3. COMPLETE ACTUATOR SPECIFICATION PROFILE
+#
+# Apply this shape explicitly when a record must contain all
+# technical attributes specified by the UHMO actuator profile.
+# It is intentionally not assigned as a global target.
+#################################################################
+
+uhmo:CompleteActuatorSpecificationShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:Actuator ;
+    sh:property [
+        sh:path uhmo:uniqueIdentifier ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1
+    ] ;
+    sh:property [
+        sh:path uhmo:manufacturer ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1
+    ] ;
+    sh:property [
+        sh:path uhmo:modelNumber ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1
+    ] ;
+    sh:property [
+        sh:path uhmo:torqueCapacity ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:forceOutput ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:strokeLength ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:angularRange ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:speed ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:precision ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:resolution ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:repeatability ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:efficiency ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:energyConsumption ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:weight ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:dimensions ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1
+    ] ;
+    sh:property [
+        sh:path uhmo:material ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1
+    ] ;
+    sh:property [
+        sh:path uhmo:operatingTemperature ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal
+    ] ;
+    sh:property [
+        sh:path uhmo:ipRating ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1
+    ] ;
+    sh:property [
+        sh:path uhmo:mtbfHours ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:serviceLife ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:maintenanceInterval ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:cost ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path uhmo:sustainabilityProfile ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1
+    ] ;
+    sh:property [
+        sh:path uhmo:regulatoryCertification ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1
+    ] .
+
+#################################################################
+# 4. SENSOR VALIDATION
+#################################################################
+
+uhmo:SensorShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:Sensor ;
+    sh:property [
+        sh:path uhmo:uniqueIdentifier ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "Every sensor must have a non-empty unique identifier."@en
+    ] .
+
+#################################################################
+# 5. ROBOTIC HAND VALIDATION
+#################################################################
+
+uhmo:RoboticHandShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:RoboticHand ;
+    sh:property [
+        sh:path uhmo:uniqueIdentifier ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "Every robotic hand must have a non-empty identifier."@en
+    ] .
+
+#################################################################
+# 6. END EFFECTOR VALIDATION
+#################################################################
+
+uhmo:EndEffectorShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:EndEffector ;
+    sh:property [
+        sh:path uhmo:uniqueIdentifier ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "Every end effector must have a non-empty identifier."@en
+    ] .
+
+#################################################################
+# 7. MANIPULATION TASK VALIDATION
+#################################################################
+
+uhmo:ManipulationTaskShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:ManipulationTask ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message
+            "A manipulation task must have a human-readable label."@en
+    ] .
+
+#################################################################
+# 8. DIGITAL TWIN VALIDATION
+#################################################################
+
+uhmo:DigitalTwinShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:DigitalTwin ;
+    sh:property [
+        sh:path uhmo:represents ;
+        sh:minCount 1 ;
+        sh:class uhmo:Entity ;
+        sh:message
+            "A digital twin must represent at least one UHMO entity."@en
+    ] .
+
+#################################################################
+# 9. SAFETY DOCUMENTATION VALIDATION
+#
+# These checks document safety-related metadata only.
+# They do not verify the physical performance, independence,
+# certification, or suitability of any safety mechanism.
+#################################################################
+
+uhmo:SafetyControllerShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:SafetyController ;
+    sh:property [
+        sh:path uhmo:uniqueIdentifier ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "A safety controller record must have an identifier."@en
+    ] .
+
+uhmo:EmergencyStopShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:EmergencyStop ;
+    sh:property [
+        sh:path uhmo:uniqueIdentifier ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:minLength 1 ;
+        sh:message
+            "An emergency stop record must have an identifier."@en
+    ] .
+
+uhmo:SafetyConstraintShape
+    a sh:NodeShape ;
+    sh:targetClass uhmo:SafetyConstraint ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message
+            "A safety constraint must have a human-readable label."@en
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:minCount 1 ;
+        sh:message
+            "A safety constraint must document its meaning."@en
+    ] .
+
+#################################################################
+# END OF UHMO SHACL VALIDATION SHAPES
+#################################################################
