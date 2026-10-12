@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robotraits"
+version = "0.1.0"
+description = "PITN ROBOTRAITS behavioral intelligence and ontology framework"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "LicenseRef-PITN-Proprietary"
+authors = [
+    { name = "Aaron Bailot" }
+]
+dependencies = []
+
+[project.optional-dependencies]
+ontology = [
+    "rdflib>=7.0,<8.0",
+    "pyshacl>=0.25,<1.0"
+]
+test = [
+    "pytest>=8.0,<9.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
