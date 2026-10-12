@@ -1,11 +1,4 @@
-Here is your complete content in a clean, copy-and-paste format, preserved as provided.
-
-text
-```
-Core Design Philosophy
-
-The website should be architected as five integrated layers.
-
+Author: Aaron Bailot aka PITN.ai umbrella ROBOTRAITS.ai, ROBOPARTS.ai, ROBOAGENTIC.ai, powerinthenumbers.ai
 Layer 1 — Knowledge Infrastructure
 
 Purpose:
@@ -488,6 +481,3 @@ ROBOPARTS, ROBOTRAITS, ROBOAGENTIC, ROBOTRONIC, under PITN.ai and powerinthenumb
 Its success will be measured not only by the number of members, but by the quality of connections it facilitates, the commercial opportunities it generates, and the role it plays as the industry's trusted infrastructure for robotic motion.
 
 This framework is intentionally platform-oriented rather than website-oriented. It gives a development team a roadmap for implementing the site in phases—from a pilot to a minimum viable product with company profiles, technical taxonomies, and messaging, to a mature ecosystem with AI-assisted supplier matching, APIs, lifecycle analytics, and global collaboration capabilities. It also provides a shared ontology that content, search, user accounts, and networking features can all reference consistently as the platform grows.
-```
-
-To upload it: Copy everything inside the text block and paste it into your document editor, then save it as a `.txt` or `.docx` file.
