@@ -1,0 +1,745 @@
+Save this as `UHMO_RoboActuators_Technical_Infrastructure.md`. Copy everything inside the block into a file and upload it to GitHub. I’ve preserved your wording and used Markdown headings and lists for readability.
+
+markdown
+````
+
+# A Master Ontology for Humanoid Actuators, End Effectors, Robotic Hands, and Manipulation Systems
+
+The Universal Humanoid Manipulation Ontology (UHMO) is a domain-specific extension of the Universal Humanoid Ontology (UHO) that focuses exclusively on the functional manipulation systems of humanoid robots. Rather than modeling every aspect of a humanoid robot, the UHMO provides a comprehensive semantic framework for actuation, robotic hands, end effectors, manipulation, sensing, control, maintenance, commerce, lifecycle management, and digital representation.
+
+The ontology establishes a common vocabulary, hierarchical taxonomy, and standardized semantic relationships that enable interoperability among robot manufacturers, component suppliers, AI developers, research institutions, service organizations, digital marketplaces, regulators, and fleet operators.
+
+UHMO is designed to support:
+
+- AI reasoning and knowledge graphs
+- Manipulation planning
+- Dexterous robotic control
+- Predictive maintenance
+- Manufacturing interoperability
+- Digital marketplaces
+- Lifecycle management
+- Regulatory compliance
+- Economic analysis
+- Research and education
+- Autonomous manipulation
+- Human–robot interaction
+- Digital twins
+- Robotics standards
+- Component interoperability
+
+Rather than organizing knowledge by engineering discipline, UHMO adopts a layered semantic architecture in which each sub-ontology represents a distinct knowledge domain while sharing common foundational entities and relationships defined by the master ontology.
+
+## UHMO Architecture
+
+```text
+UNIVERSAL HUMANOID MANIPULATION ONTOLOGY
+                 (UHMO)
+
+                    |
+┌──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐
+│              │              │              │              │              │              │
+HAO            HRO            HMO            HSO            HEO            HDO
+Actuation      Robotic        Maintenance     Services       Economics      Digital
+Ontology       Hand & End     Ontology        Ontology       Ontology       Ontology
+               Effector
+               Ontology
+
+                    ┌──────────────────────────┐
+                    │ Manipulation Intelligence│
+                    │ (Control & AI Layer)     │
+                    └──────────────────────────┘
+```
+
+Every ontology references the same foundational entities, ensuring semantic consistency across the complete manipulation ecosystem.
+
+## Layer 1 — Universal Humanoid Manipulation Ontology (UHMO)
+
+### Purpose
+
+Defines the highest-level concepts common to all humanoid manipulation systems.
+
+### Core Entities
+
+**Robotic Systems**
+
+- Humanoid Robot
+- Mobile Manipulator
+- Robotic Platform
+- Manipulation System
+- Robotic Arm
+- Robotic Wrist
+- Robotic Hand
+- Finger Assembly
+- Thumb Assembly
+- End Effector
+- Tool Changer
+
+**Mechanical Systems**
+
+- Component
+- Mechanical Assembly
+- Joint
+- Actuator
+- Transmission
+- Gearbox
+- Bearing
+- Tendon Drive
+- Harmonic Drive
+- Differential Mechanism
+- Compliance System
+
+**Electrical Systems**
+
+- Motor
+- Servo Drive
+- Battery
+- Power Electronics
+- Wiring Harness
+- Embedded Controller
+
+**Sensor Systems**
+
+- Force Sensor
+- Torque Sensor
+- Tactile Sensor
+- Pressure Sensor
+- Encoder
+- IMU
+- Vision Sensor
+- Proximity Sensor
+
+**Software Systems**
+
+- Motion Controller
+- Manipulation Planner
+- Grasp Planner
+- AI Model
+- Reinforcement Learning Model
+- Digital Twin
+- Firmware
+- Control Software
+
+**Organizational Entities**
+
+- Manufacturer
+- Supplier
+- System Integrator
+- Service Provider
+- Fleet Operator
+- Research Institution
+- Standards Organization
+- Regulatory Agency
+
+**Information Entities**
+
+- Asset
+- Service
+- Event
+- Transaction
+- Knowledge
+- Digital Resource
+- Technical Documentation
+- CAD Model
+
+### Core Relationships
+
+- hasPart
+- contains
+- controls
+- actuates
+- powers
+- senses
+- communicatesWith
+- manipulates
+- grasps
+- requires
+- performs
+- services
+- repairs
+- replaces
+- upgrades
+- manufactures
+- supplies
+- purchases
+- owns
+- simulates
+- records
+- generates
+- documents
+- represents
+
+## Layer 2 — Humanoid Actuation Ontology (HAO)
+
+### Purpose
+
+Models every mechanism responsible for generating controlled motion.
+
+### Actuator Classes
+
+**Electric Actuation**
+
+- Brushless DC Motors
+- Servo Motors
+- Stepper Motors
+- Direct Drive Motors
+- Linear Actuators
+- Rotary Actuators
+- Voice Coil Actuators
+
+**Hydraulic Actuation**
+
+- Hydraulic Cylinders
+- Hydraulic Pumps
+- Hydraulic Valves
+- Electrohydraulic Actuators
+
+**Pneumatic Actuation**
+
+- Pneumatic Cylinders
+- Artificial Pneumatic Muscles
+- Pneumatic Tendons
+
+**Emerging Actuation Technologies**
+
+- Shape Memory Alloy Actuators
+- Electroactive Polymer Actuators
+- Dielectric Elastomer Actuators
+- Soft Robotics Actuators
+- Twisted String Actuators
+- Magnetorheological Actuators
+
+### Transmission Systems
+
+- Harmonic Drives
+- Planetary Gearboxes
+- Cycloidal Drives
+- Spur Gears
+- Belt Drives
+- Cable Drives
+- Tendon Systems
+- Differential Gear Systems
+
+### Actuator Attributes
+
+Every actuator includes:
+
+- Unique Identifier
+- Manufacturer
+- Model Number
+- Torque Capacity
+- Force Output
+- Stroke Length
+- Angular Range
+- Speed
+- Precision
+- Resolution
+- Repeatability
+- Efficiency
+- Energy Consumption
+- Weight
+- Dimensions
+- Material
+- Operating Temperature
+- IP Rating
+- MTBF
+- Service Life
+- Maintenance Interval
+- Cost
+- Sustainability Profile
+- Regulatory Certification
+
+## Layer 3 — Robotic Hand and End Effector Ontology (HRO)
+
+### Purpose
+
+Defines the complete semantic structure of robotic manipulation hardware.
+
+### End Effector Categories
+
+**Humanoid End Effectors**
+
+- Five-Finger Robotic Hands
+- Anthropomorphic Hands
+- Dexterous Hands
+- Underactuated Hands
+- Soft Robotic Hands
+- Prosthetic-Inspired Hands
+
+**Industrial End Effectors**
+
+- Parallel Grippers
+- Three-Jaw Grippers
+- Adaptive Grippers
+- Vacuum Grippers
+- Magnetic Grippers
+- Welding Tools
+- Cutting Tools
+- Screwdriving Tools
+- Dispensing Systems
+- Tool Changers
+
+### Robotic Hand Components
+
+- Palm Structure
+- Wrist Assembly
+- Finger
+- Thumb
+- Phalange
+- Knuckle
+- Joint
+- Tendon
+- Ligament-Inspired Mechanism
+- Compliance Element
+- Fingertip
+- Fingertip Sensor
+- Finger Actuator
+
+### Finger Ontology
+
+Every finger contains:
+
+- Distal Phalanx
+- Intermediate Phalanx
+- Proximal Phalanx
+- MCP Joint
+- PIP Joint
+- DIP Joint
+- Tendon Drive
+- Embedded Actuator
+- Force Sensor
+- Tactile Array
+- Position Encoder
+
+### Manipulation Tasks
+
+Robotic hands perform:
+
+- Precision Grasp
+- Power Grasp
+- Pinch
+- Hook Grip
+- Tripod Grip
+- Writing
+- Turning
+- Twisting
+- Assembly
+- Fastening
+- Sorting
+- Packaging
+- Inspection
+- Tool Use
+- Gesture Generation
+- Object Handover
+
+## Layer 4 — Manipulation Intelligence Ontology (MIO)
+
+### Purpose
+
+Models perception, planning, and intelligent control of manipulation systems.
+
+### AI Components
+
+- Motion Planning
+- Trajectory Planning
+- Force Control
+- Impedance Control
+- Adaptive Control
+- Reinforcement Learning
+- Grasp Planning
+- Object Recognition
+- Pose Estimation
+- Dexterity Optimization
+- Manipulation Policy
+- Digital Twin Controller
+
+### Relationships
+
+```text
+AI Model
+    |
+    | controls
+    v
+Motion Controller
+    |
+    | commands
+    v
+Actuator
+    |
+    | moves
+    v
+Joint
+    |
+    | positions
+    v
+Robotic Hand
+    |
+    | manipulates
+    v
+Object
+```
+
+## Layer 5 — Humanoid Maintenance Ontology (HMO)
+
+### Purpose
+
+Models the complete lifecycle of manipulation components.
+
+### Maintenance Classes
+
+- Preventive Maintenance
+- Predictive Maintenance
+- Corrective Maintenance
+- Emergency Maintenance
+- Calibration
+- Firmware Maintenance
+- Condition Monitoring
+
+### Lifecycle Events
+
+- Inspection
+- Cleaning
+- Lubrication
+- Calibration
+- Joint Alignment
+- Torque Verification
+- Encoder Calibration
+- Actuator Replacement
+- Gearbox Replacement
+- Sensor Replacement
+- Finger Repair
+- End Effector Upgrade
+- Software Update
+- Refurbishment
+- Recycling
+
+Every maintenance event records:
+
+- Component
+- Technician
+- Time
+- Cost
+- Outcome
+- Remaining Useful Life
+- Failure Mode
+- Root Cause
+- Downtime
+- Parts Consumed
+
+## Layer 6 — Humanoid Services Ontology (HSO)
+
+### Purpose
+
+Models services performed using manipulation systems.
+
+### Service Domains
+
+- Manufacturing
+- Assembly
+- Healthcare
+- Logistics
+- Warehouse Automation
+- Hospitality
+- Retail
+- Agriculture
+- Laboratory Automation
+- Construction
+- Space Robotics
+- Underwater Robotics
+- Inspection
+- Maintenance
+- Research
+- Emergency Response
+
+### Service Relationships
+
+```text
+Service Provider
+       |
+       | operates
+       v
+Humanoid Robot
+       |
+       | uses
+       v
+Robotic Hand
+       |
+       | performs
+       v
+Manipulation Service
+       |
+       | for
+       v
+Customer
+```
+
+## Layer 7 — Humanoid Economic Ontology (HEO)
+
+### Purpose
+
+Defines the economic behavior of the manipulation ecosystem.
+
+### Economic Entities
+
+- Actuator Manufacturer
+- Hand Manufacturer
+- End Effector Supplier
+- Component Supplier
+- Distributor
+- Marketplace
+- Fleet Operator
+- Maintenance Provider
+- Insurance Provider
+- Financial Institution
+
+### Revenue Categories
+
+- Robot Manufacturing
+- Actuator Sales
+- End Effector Sales
+- Spare Parts
+- Software
+- AI Licensing
+- Predictive Maintenance
+- Training
+- Digital Twin Services
+- Maintenance Contracts
+- Extended Warranty
+- Upgrades
+- Refurbishment
+- Recycling
+
+### Lifecycle Metrics
+
+- Acquisition Cost
+- Operating Cost
+- Energy Cost
+- Maintenance Cost
+- Replacement Cost
+- Residual Value
+- Mean Time Between Failure
+- Total Cost of Ownership
+- Lifetime Revenue
+- Circular Economy Value
+
+## Layer 8 — Humanoid Commerce Ontology (HCO)
+
+### Purpose
+
+Models commercial exchange across the manipulation ecosystem.
+
+### Commercial Objects
+
+- Robotic Hands
+- End Effectors
+- Actuators
+- Motors
+- Sensors
+- Controllers
+- Gearboxes
+- Bearings
+- Tool Changers
+- Spare Parts
+- Software
+- Digital Twins
+- AI Models
+- Maintenance Contracts
+- Training Programs
+- Developer APIs
+
+### Commerce Transactions
+
+- Request for Quote
+- Purchase Order
+- Contract
+- Invoice
+- Shipment
+- Installation
+- Commissioning
+- Warranty
+- Renewal
+- Return Authorization
+
+### Marketplace Relationships
+
+```text
+Manufacturer
+     |
+     v
+Supplier
+     |
+     v
+Marketplace
+     |
+     v
+System Integrator
+     |
+     v
+Fleet Operator
+     |
+     v
+Service Provider
+```
+
+## Layer 9 — Humanoid Digital Ontology (HDO)
+
+### Purpose
+
+Models the digital infrastructure supporting robotic manipulation.
+
+### Digital Assets
+
+- Digital Twins
+- Knowledge Graphs
+- CAD Models
+- Simulation Models
+- Technical Documentation
+- Product Catalogs
+- Maintenance Records
+- Firmware Repository
+- AI Model Repository
+- Training Data
+- Knowledge Bases
+- Research Libraries
+- Standards Documentation
+- Developer APIs
+
+### Digital Relationships
+
+```text
+Knowledge Base
+      |
+      | describes
+      v
+Actuators
+      |
+      v
+End Effectors
+      |
+      v
+Robotic Hands
+```
+
+```text
+Digital Twin
+      |
+      | represents
+      v
+Physical Manipulation System
+```
+
+```text
+Marketplace
+      |
+      | lists
+      v
+Products
+```
+
+```text
+Simulation
+      |
+      | validates
+      v
+Manipulation Strategy
+```
+
+## Cross-Ontology Example
+
+### Dexterous Robotic Hand
+
+```text
+Robotic Hand
+      |
+      | belongsTo
+      v
+HRO
+      |
+      | poweredBy
+      v
+HAO
+      |
+      | controlledBy
+      v
+MIO
+      |
+      | maintainedBy
+      v
+HMO
+      |
+      | performs
+      v
+HSO
+      |
+      | creates Revenue
+      v
+HEO
+      |
+      | soldThrough
+      v
+HCO
+      |
+      | representedBy
+      v
+HDO
+```
+
+This demonstrates how a single entity participates across multiple ontological domains without duplication while maintaining semantic consistency.
+
+## Shared Semantic Principles
+
+Every entity in UHMO possesses:
+
+- Identity
+- Classification
+- Attributes
+- Functional Role
+- Material Composition
+- Performance Characteristics
+- Relationships
+- Lifecycle
+- Events
+- Economic Value
+- Digital Representation
+- Maintenance History
+- Regulatory Status
+- Standards Compliance
+- Sustainability Profile
+
+## Future Expansion Modules
+
+UHMO is designed as a modular extension of the Universal Humanoid Ontology and can be expanded through specialized ontologies, including:
+
+- Humanoid Artificial Intelligence Ontology (HAIO)
+- Humanoid Dexterous Manipulation Ontology (HDMO)
+- Humanoid Grasp Ontology (HGO)
+- Humanoid Tactile Sensing Ontology (HTSO)
+- Humanoid Force Control Ontology (HFCO)
+- Humanoid Motion Planning Ontology (HMPO)
+- Humanoid Supply Chain Ontology (HSCO)
+- Humanoid Cybersecurity Ontology (HCyO)
+- Humanoid Safety Ontology (HSaO)
+- Humanoid Standards Ontology (HStO)
+- Humanoid Environmental Ontology (HEnO)
+- Humanoid Education Ontology (HEdO)
+- RoboTraits Ontology (RTO) for standardized semantic descriptions of robotic capabilities, performance characteristics, behaviors, and component traits that can be linked across actuators, robotic hands, end effectors, sensors, and AI systems.
+
+## Vision
+
+The Universal Humanoid Manipulation Ontology (UHMO) provides a unified semantic foundation for the manipulation subsystem of the global humanoid robotics ecosystem. By integrating actuators, transmissions, robotic hands, end effectors, sensing, intelligent control, maintenance, services, commerce, economics, and digital infrastructure into a coherent layered architecture, UHMO enables consistent knowledge representation across manufacturers, researchers, AI systems, marketplaces, and service organizations.
+
+Designed as a specialized extension of the broader Universal Humanoid Ontology (UHO), UHMO establishes a common language for dexterous manipulation while remaining interoperable with future ontologies such as RoboTraits, AI, supply chain, safety, cybersecurity, and standards. This modular architecture supports long-term collaboration, interoperability, innovation, and scalable knowledge integration as humanoid robotics continues to evolve.
+
+This can be a global membership platform and digital ecosystem.
+
+RoboActuators.com forwarded to Roboparts.ai ;
+
+# Technical Infrastructure Design Framework
+
+## Building the Global Operating System for the Robot Motion Economy
+
+## Vision
+
+RoboActuators.com is designed to become the world's leading digital infrastructure connecting manufacturers, suppliers, OEMs, system integrators, distributors, researchers, investors, and enterprise buyers across the robotic motion industry.
+
+Unlike a traditional directory or marketplace, the platform functions as a knowledge graph, business network, technical database, and commercial collaboration ecosystem built around robotic actuators and their downstream technologies.
+````
