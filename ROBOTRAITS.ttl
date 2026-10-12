@@ -1,0 +1,446 @@
+Understood. Using your information as-is only, here is the first small, copy-and-paste-ready ontology file. I have not added new domain concepts or changed your terminology.
+
+## File 1 — `UHMO.ttl`
+
+turtle
+```
+@prefix uhmo: <https://roboactuators.ai/ontology/UHMO#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+
+<https://roboactuators.ai/ontology/UHMO>
+    a owl:Ontology ;
+    rdfs:label "Universal Humanoid Manipulation Ontology" ;
+    rdfs:comment """
+    A Master Ontology for Humanoid Actuators, End Effectors,
+    Robotic Hands, and Manipulation Systems.
+
+    The Universal Humanoid Manipulation Ontology (UHMO) is a
+    domain-specific extension of the Universal Humanoid Ontology
+    (UHO) that focuses exclusively on the functional manipulation
+    systems of humanoid robots.
+
+    UHMO provides a comprehensive semantic framework for
+    actuation, robotic hands, end effectors, manipulation,
+    sensing, control, maintenance, commerce, lifecycle
+    management, and digital representation.
+
+    The ontology establishes a common vocabulary, hierarchical
+    taxonomy, and standardized semantic relationships that enable
+    interoperability among robot manufacturers, component
+    suppliers, AI developers, research institutions, service
+    organizations, digital marketplaces, regulators, and fleet
+    operators.
+    """ .
+
+# ============================================================
+# UHMO SUB-ONTOLOGY ARCHITECTURE
+# ============================================================
+
+uhmo:HAO
+    a owl:Ontology ;
+    rdfs:label "Humanoid Actuation Ontology" .
+
+uhmo:HRO
+    a owl:Ontology ;
+    rdfs:label "Robotic Hand and End Effector Ontology" .
+
+uhmo:HMO
+    a owl:Ontology ;
+    rdfs:label "Maintenance Ontology" .
+
+uhmo:HSO
+    a owl:Ontology ;
+    rdfs:label "Services Ontology" .
+
+uhmo:HEO
+    a owl:Ontology ;
+    rdfs:label "Economics Ontology" .
+
+uhmo:HDO
+    a owl:Ontology ;
+    rdfs:label "Digital Ontology" .
+
+uhmo:MIO
+    a owl:Ontology ;
+    rdfs:label "Manipulation Intelligence Ontology" .
+
+# ============================================================
+# LAYER 1 — UNIVERSAL HUMANOID MANIPULATION ONTOLOGY
+# CORE ENTITIES
+# ============================================================
+
+uhmo:RoboticSystem
+    a owl:Class ;
+    rdfs:label "Robotic System" .
+
+uhmo:HumanoidRobot
+    a owl:Class ;
+    rdfs:subClassOf uhmo:RoboticSystem ;
+    rdfs:label "Humanoid Robot" .
+
+uhmo:MobileManipulator
+    a owl:Class ;
+    rdfs:subClassOf uhmo:RoboticSystem ;
+    rdfs:label "Mobile Manipulator" .
+
+uhmo:RoboticPlatform
+    a owl:Class ;
+    rdfs:label "Robotic Platform" .
+
+uhmo:ManipulationSystem
+    a owl:Class ;
+    rdfs:label "Manipulation System" .
+
+uhmo:RoboticArm
+    a owl:Class ;
+    rdfs:label "Robotic Arm" .
+
+uhmo:RoboticWrist
+    a owl:Class ;
+    rdfs:label "Robotic Wrist" .
+
+uhmo:RoboticHand
+    a owl:Class ;
+    rdfs:label "Robotic Hand" .
+
+uhmo:FingerAssembly
+    a owl:Class ;
+    rdfs:label "Finger Assembly" .
+
+uhmo:ThumbAssembly
+    a owl:Class ;
+    rdfs:label "Thumb Assembly" .
+
+uhmo:EndEffector
+    a owl:Class ;
+    rdfs:label "End Effector" .
+
+uhmo:ToolChanger
+    a owl:Class ;
+    rdfs:label "Tool Changer" .
+
+# ============================================================
+# MECHANICAL SYSTEMS
+# ============================================================
+
+uhmo:Component
+    a owl:Class ;
+    rdfs:label "Component" .
+
+uhmo:MechanicalAssembly
+    a owl:Class ;
+    rdfs:label "Mechanical Assembly" .
+
+uhmo:Joint
+    a owl:Class ;
+    rdfs:label "Joint" .
+
+uhmo:Actuator
+    a owl:Class ;
+    rdfs:label "Actuator" .
+
+uhmo:Transmission
+    a owl:Class ;
+    rdfs:label "Transmission" .
+
+uhmo:Gearbox
+    a owl:Class ;
+    rdfs:label "Gearbox" .
+
+uhmo:Bearing
+    a owl:Class ;
+    rdfs:label "Bearing" .
+
+uhmo:TendonDrive
+    a owl:Class ;
+    rdfs:label "Tendon Drive" .
+
+uhmo:HarmonicDrive
+    a owl:Class ;
+    rdfs:label "Harmonic Drive" .
+
+uhmo:DifferentialMechanism
+    a owl:Class ;
+    rdfs:label "Differential Mechanism" .
+
+uhmo:ComplianceSystem
+    a owl:Class ;
+    rdfs:label "Compliance System" .
+
+# ============================================================
+# ELECTRICAL SYSTEMS
+# ============================================================
+
+uhmo:Motor
+    a owl:Class ;
+    rdfs:label "Motor" .
+
+uhmo:ServoDrive
+    a owl:Class ;
+    rdfs:label "Servo Drive" .
+
+uhmo:Battery
+    a owl:Class ;
+    rdfs:label "Battery" .
+
+uhmo:PowerElectronics
+    a owl:Class ;
+    rdfs:label "Power Electronics" .
+
+uhmo:WiringHarness
+    a owl:Class ;
+    rdfs:label "Wiring Harness" .
+
+uhmo:EmbeddedController
+    a owl:Class ;
+    rdfs:label "Embedded Controller" .
+
+# ============================================================
+# SENSOR SYSTEMS
+# ============================================================
+
+uhmo:ForceSensor
+    a owl:Class ;
+    rdfs:label "Force Sensor" .
+
+uhmo:TorqueSensor
+    a owl:Class ;
+    rdfs:label "Torque Sensor" .
+
+uhmo:TactileSensor
+    a owl:Class ;
+    rdfs:label "Tactile Sensor" .
+
+uhmo:PressureSensor
+    a owl:Class ;
+    rdfs:label "Pressure Sensor" .
+
+uhmo:Encoder
+    a owl:Class ;
+    rdfs:label "Encoder" .
+
+uhmo:IMU
+    a owl:Class ;
+    rdfs:label "IMU" .
+
+uhmo:VisionSensor
+    a owl:Class ;
+    rdfs:label "Vision Sensor" .
+
+uhmo:ProximitySensor
+    a owl:Class ;
+    rdfs:label "Proximity Sensor" .
+
+# ============================================================
+# SOFTWARE SYSTEMS
+# ============================================================
+
+uhmo:MotionController
+    a owl:Class ;
+    rdfs:label "Motion Controller" .
+
+uhmo:ManipulationPlanner
+    a owl:Class ;
+    rdfs:label "Manipulation Planner" .
+
+uhmo:GraspPlanner
+    a owl:Class ;
+    rdfs:label "Grasp Planner" .
+
+uhmo:AIModel
+    a owl:Class ;
+    rdfs:label "AI Model" .
+
+uhmo:ReinforcementLearningModel
+    a owl:Class ;
+    rdfs:label "Reinforcement Learning Model" .
+
+uhmo:DigitalTwin
+    a owl:Class ;
+    rdfs:label "Digital Twin" .
+
+uhmo:Firmware
+    a owl:Class ;
+    rdfs:label "Firmware" .
+
+uhmo:ControlSoftware
+    a owl:Class ;
+    rdfs:label "Control Software" .
+
+# ============================================================
+# ORGANIZATIONAL ENTITIES
+# ============================================================
+
+uhmo:Manufacturer
+    a owl:Class ;
+    rdfs:label "Manufacturer" .
+
+uhmo:Supplier
+    a owl:Class ;
+    rdfs:label "Supplier" .
+
+uhmo:SystemIntegrator
+    a owl:Class ;
+    rdfs:label "System Integrator" .
+
+uhmo:ServiceProvider
+    a owl:Class ;
+    rdfs:label "Service Provider" .
+
+uhmo:FleetOperator
+    a owl:Class ;
+    rdfs:label "Fleet Operator" .
+
+uhmo:ResearchInstitution
+    a owl:Class ;
+    rdfs:label "Research Institution" .
+
+uhmo:StandardsOrganization
+    a owl:Class ;
+    rdfs:label "Standards Organization" .
+
+uhmo:RegulatoryAgency
+    a owl:Class ;
+    rdfs:label "Regulatory Agency" .
+
+# ============================================================
+# INFORMATION ENTITIES
+# ============================================================
+
+uhmo:Asset
+    a owl:Class ;
+    rdfs:label "Asset" .
+
+uhmo:Service
+    a owl:Class ;
+    rdfs:label "Service" .
+
+uhmo:Event
+    a owl:Class ;
+    rdfs:label "Event" .
+
+uhmo:Transaction
+    a owl:Class ;
+    rdfs:label "Transaction" .
+
+uhmo:Knowledge
+    a owl:Class ;
+    rdfs:label "Knowledge" .
+
+uhmo:DigitalResource
+    a owl:Class ;
+    rdfs:label "Digital Resource" .
+
+uhmo:TechnicalDocumentation
+    a owl:Class ;
+    rdfs:label "Technical Documentation" .
+
+uhmo:CADModel
+    a owl:Class ;
+    rdfs:label "CAD Model" .
+
+# ============================================================
+# CORE RELATIONSHIPS
+# ============================================================
+
+uhmo:hasPart
+    a owl:ObjectProperty ;
+    rdfs:label "has part" .
+
+uhmo:contains
+    a owl:ObjectProperty ;
+    rdfs:label "contains" .
+
+uhmo:controls
+    a owl:ObjectProperty ;
+    rdfs:label "controls" .
+
+uhmo:actuates
+    a owl:ObjectProperty ;
+    rdfs:label "actuates" .
+
+uhmo:powers
+    a owl:ObjectProperty ;
+    rdfs:label "powers" .
+
+uhmo:senses
+    a owl:ObjectProperty ;
+    rdfs:label "senses" .
+
+uhmo:communicatesWith
+    a owl:ObjectProperty ;
+    rdfs:label "communicates with" .
+
+uhmo:manipulates
+    a owl:ObjectProperty ;
+    rdfs:label "manipulates" .
+
+uhmo:grasps
+    a owl:ObjectProperty ;
+    rdfs:label "grasps" .
+
+uhmo:requires
+    a owl:ObjectProperty ;
+    rdfs:label "requires" .
+
+uhmo:performs
+    a owl:ObjectProperty ;
+    rdfs:label "performs" .
+
+uhmo:services
+    a owl:ObjectProperty ;
+    rdfs:label "services" .
+
+uhmo:repairs
+    a owl:ObjectProperty ;
+    rdfs:label "repairs" .
+
+uhmo:replaces
+    a owl:ObjectProperty ;
+    rdfs:label "replaces" .
+
+uhmo:upgrades
+    a owl:ObjectProperty ;
+    rdfs:label "upgrades" .
+
+uhmo:manufactures
+    a owl:ObjectProperty ;
+    rdfs:label "manufactures" .
+
+uhmo:supplies
+    a owl:ObjectProperty ;
+    rdfs:label "supplies" .
+
+uhmo:purchases
+    a owl:ObjectProperty ;
+    rdfs:label "purchases" .
+
+uhmo:owns
+    a owl:ObjectProperty ;
+    rdfs:label "owns" .
+
+uhmo:simulates
+    a owl:ObjectProperty ;
+    rdfs:label "simulates" .
+
+uhmo:records
+    a owl:ObjectProperty ;
+    rdfs:label "records" .
+
+uhmo:generates
+    a owl:ObjectProperty ;
+    rdfs:label "generates" .
+
+uhmo:documents
+    a owl:ObjectProperty ;
+    rdfs:label "documents" .
+
+uhmo:represents
+    a owl:ObjectProperty ;
+    rdfs:label "represents" .
+```
+
+Scope of this file: the UHMO master ontology declaration, all Layer 1 entity categories you supplied, and the core relationship vocabulary.
+The remaining supplied material should be encoded in separate files: `HAO.ttl` for actuation, `HRO.ttl` for hands and end effectors, and `MIO.ttl` for manipulation intelligence. The HMO, HSO, HEO, and HDO ontology modules can follow using your specified labels and purposes.
