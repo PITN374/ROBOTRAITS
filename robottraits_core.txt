@@ -1,0 +1,277 @@
+ROBOTRAITS Core Software
+Powered by PITN.ai
+
+Purpose:
+    Define personality traits and archetypes, evaluate context,
+    select permitted behaviors, and maintain an audit history.
+
+Status:
+    Foundational prototype. Not a safety-rated robot controller.
+"""
+
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from typing import Any
+from uuid import uuid4
+
+@dataclass
+class Trait:
+    trait_id: str
+    name: str
+    category: str
+    value: float
+    confidence: float = 1.0
+    version: str = "1.0"
+
+    def __post_init__(self):
+        if not 0.0 <= self.value <= 1.0:
+            raise ValueError("Trait value must be between 0 and 1.")
+        if not 0.0 <= self.confidence <= 1.0:
+            raise ValueError("Confidence must be between 0 and 1.")
+
+@dataclass
+class Archetype:
+    archetype_id: str
+    name: str
+    traits: dict[str, float]
+    description: str = ""
+
+@dataclass
+class Context:
+    task: str
+    environment: str = "unknown"
+    user_preference: str | None = None
+    authorized: bool = True
+    emergency_stop_active: bool = False
+
+@dataclass
+class Decision:
+    decision_id: str
+    timestamp: str
+    task: str
+    selected_behavior: str
+    permitted: bool
+    reason: str
+    trait_values: dict[str, float] = field(default_factory=dict)
+
+class TraitRegistry:
+    """Stores and retrieves versioned behavioral traits."""
+
+    def __init__(self):
+        self._traits: dict[str, Trait] = {}
+
+    def register(self, trait: Trait) -> None:
+        self._traits[trait.trait_id] = trait
+
+    def get(self, trait_id: str) -> Trait:
+        if trait_id not in self._traits:
+            raise KeyError(f"Unknown trait: {trait_id}")
+        return self._traits[trait_id]
+
+    def all(self) -> list[Trait]:
+        return list(self._traits.values())
+
+class ArchetypeEngine:
+    """Combines archetypes into a configurable trait profile."""
+
+    def __init__(self):
+        self._archetypes: dict[str, Archetype] = {}
+
+    def register(self, archetype: Archetype) -> None:
+        self._archetypes[archetype.archetype_id] = archetype
+
+    def build_profile(
+        self,
+        archetype_ids: list[str],
+    ) -> dict[str, float]:
+        if not archetype_ids:
+            return {}
+
+        combined: dict[str, list[float]] = {}
+
+        for archetype_id in archetype_ids:
+            if archetype_id not in self._archetypes:
+                raise KeyError(f"Unknown archetype: {archetype_id}")
+
+            archetype = self._archetypes[archetype_id]
+
+            for trait_name, value in archetype.traits.items():
+                combined.setdefault(trait_name, []).append(value)
+
+        return {
+            name: sum(values) / len(values)
+            for name, values in combined.items()
+        }
+
+class SafetyPolicy:
+    """
+    Applies basic software-level permission checks.
+
+    This is not a substitute for an independent, hardware-level
+    safety controller or emergency-stop circuit.
+    """
+
+    def evaluate(self, context: Context) -> tuple[bool, str]:
+        if context.emergency_stop_active:
+            return False, "Emergency stop is active."
+
+        if not context.authorized:
+            return False, "Operation is not authorized."
+
+        return True, "Basic policy checks passed."
+
+class ContextEngine:
+    """Selects a permitted high-level behavior for a task."""
+
+    def select_behavior(
+        self,
+        context: Context,
+        traits: dict[str, float],
+    ) -> str:
+        task = context.task.lower().strip()
+
+        if task in {"research", "analyze", "investigate"}:
+            return "analytical_response"
+
+        if task in {"teach", "explain", "assist"}:
+            if traits.get("patience", 0.5) >= 0.6:
+                return "patient_assistance"
+            return "standard_assistance"
+
+        if task in {"create", "brainstorm", "design"}:
+            return "creative_response"
+
+        if task in {"inspect", "verify", "audit"}:
+            return "verification_workflow"
+
+        return "general_response"
+
+class AuditLog:
+    """Maintains an in-memory history of decisions."""
+
+    def __init__(self):
+        self.records: list[Decision] = []
+
+    def record(self, decision: Decision) -> None:
+        self.records.append(decision)
+
+    def all(self) -> list[Decision]:
+        return list(self.records)
+
+class RobotTraits:
+    """Coordinates the ROBOTRAITS software modules."""
+
+    def __init__(self):
+        self.traits = TraitRegistry()
+        self.archetypes = ArchetypeEngine()
+        self.safety = SafetyPolicy()
+        self.context = ContextEngine()
+        self.audit = AuditLog()
+
+    def evaluate(
+        self,
+        task_context: Context,
+        archetype_ids: list[str],
+    ) -> Decision:
+        profile = self.archetypes.build_profile(archetype_ids)
+
+        permitted, reason = self.safety.evaluate(task_context)
+
+        if permitted:
+            behavior = self.context.select_behavior(
+                task_context,
+                profile,
+            )
+        else:
+            behavior = "no_action"
+
+        decision = Decision(
+            decision_id=str(uuid4()),
+            timestamp=datetime.now(timezone.utc).isoformat(),
+            task=task_context.task,
+            selected_behavior=behavior,
+            permitted=permitted,
+            reason=reason,
+            trait_values=profile,
+        )
+
+        self.audit.record(decision)
+        return decision
+
+def create_default_system() -> RobotTraits:
+    """Create a starter ROBOTRAITS configuration."""
+
+    system = RobotTraits()
+
+    system.traits.register(
+        Trait("trait-001", "Patience", "social", 0.8)
+    )
+    system.traits.register(
+        Trait("trait-002", "Creativity", "cognitive", 0.9)
+    )
+    system.traits.register(
+        Trait("trait-003", "Precision", "operational", 0.95)
+    )
+    system.traits.register(
+        Trait("trait-004", "Curiosity", "cognitive", 0.85)
+    )
+
+    system.archetypes.register(
+        Archetype(
+            archetype_id="analytical_researcher",
+            name="Analytical Researcher",
+            traits={
+                "curiosity": 0.9,
+                "precision": 0.9,
+                "patience": 0.7,
+            },
+            description="Emphasizes analysis and verification.",
+        )
+    )
+
+    system.archetypes.register(
+        Archetype(
+            archetype_id="creative_innovator",
+            name="Creative Innovator",
+            traits={
+                "creativity": 0.95,
+                "curiosity": 0.85,
+                "patience": 0.6,
+            },
+            description="Emphasizes creativity and exploration.",
+        )
+    )
+
+    return system
+
+def main() -> None:
+    system = create_default_system()
+
+    context = Context(
+        task="research",
+        environment="simulation",
+        authorized=True,
+    )
+
+    decision = system.evaluate(
+        task_context=context,
+        archetype_ids=[
+            "analytical_researcher",
+            "creative_innovator",
+        ],
+    )
+
+    print("ROBOTRAITS — PITN.ai")
+    print("=" * 40)
+    print(f"Decision ID: {decision.decision_id}")
+    print(f"Task: {decision.task}")
+    print(f"Behavior: {decision.selected_behavior}")
+    print(f"Permitted: {decision.permitted}")
+    print(f"Reason: {decision.reason}")
+    print(f"Trait profile: {decision.trait_values}")
+    print(f"Audit entries: {len(system.audit.all())}")
+
+if __name__ == "__main__":
+    main()
+```
+This creates one Python source file. It does not yet implement machine learning, reinforcement learning, hardware integration, or a production safety controller; those would be subsequent development stages.
